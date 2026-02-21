@@ -1,0 +1,18 @@
+# Flutter
+.dart_tool/
+.packages
+build/
+*.iml
+*.ipr
+*.iws
+.flutter-plugins
+.flutter-plugins-dependencies
+
+# IDE
+.idea/
+*.swp
+*.swo
+
+# Generated
+*.g.dart
+*.freezed.dart
