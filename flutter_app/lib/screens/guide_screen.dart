@@ -109,6 +109,7 @@ class GuideScreen extends StatelessWidget {
                           ),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisSize: MainAxisSize.min,
                             children: [
                               Container(
                                 width: 48,
@@ -122,6 +123,8 @@ class GuideScreen extends StatelessWidget {
                               const SizedBox(height: 12),
                               Text(
                                 t.name,
+                                maxLines: 1,
+                                overflow: TextOverflow.ellipsis,
                                 style: const TextStyle(
                                   fontWeight: FontWeight.bold,
                                   color: AppColors.foreground,
@@ -130,6 +133,8 @@ class GuideScreen extends StatelessWidget {
                               const SizedBox(height: 4),
                               Text(
                                 t.desc,
+                                maxLines: 2,
+                                overflow: TextOverflow.ellipsis,
                                 style: const TextStyle(
                                   fontSize: 14,
                                   color: AppColors.mutedForeground,
