@@ -4,6 +4,8 @@ import 'screens/index_screen.dart';
 import 'screens/onboarding_screen.dart';
 import 'screens/guide_screen.dart';
 import 'screens/dashboard_screen.dart';
+import 'screens/personalize_screen.dart';
+import 'screens/saved_screen.dart';
 import 'screens/assessment_screen.dart';
 import 'screens/not_found_screen.dart';
 
@@ -28,6 +30,14 @@ final appRouter = GoRouter(
     GoRoute(
       path: '/dashboard',
       builder: (context, state) => const DashboardScreen(),
+    ),
+    GoRoute(
+      path: '/saved',
+      builder: (context, state) => const SavedScreen(),
+    ),
+    GoRoute(
+      path: '/settings',
+      builder: (context, state) => const PersonalizeScreen(),
     ),
     GoRoute(
       path: '/assessment/:scenario',

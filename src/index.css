@@ -87,9 +87,7 @@
 }
 
 @layer base {
-  * {
-    @apply border-border;
-  }
+  /* Removed global border on all elements which caused unwanted outlines */
 
   body {
     @apply bg-background text-foreground font-sans;
