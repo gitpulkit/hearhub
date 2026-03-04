@@ -11,8 +11,8 @@ class BottomNav extends StatelessWidget {
     (icon: LucideIcons.house, label: 'Home', path: '/dashboard'),
     (icon: LucideIcons.compass, label: 'Discover', path: null),
     (icon: LucideIcons.search, label: 'Search', path: null),
-    (icon: LucideIcons.bookmark, label: 'Saved', path: null),
-    (icon: LucideIcons.settings, label: 'Settings', path: null),
+    (icon: LucideIcons.bookmark, label: 'Saved', path: '/saved'),
+      (icon: LucideIcons.settings, label: 'Settings', path: '/settings'),
   ];
 
   @override

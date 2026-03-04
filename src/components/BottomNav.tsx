@@ -5,8 +5,8 @@ const navItems = [
   { icon: Home, label: "Home", path: "/dashboard" },
   { icon: Compass, label: "Discover", path: "#" },
   { icon: Search, label: "Search", path: "#" },
-  { icon: Bookmark, label: "Saved", path: "#" },
-  { icon: Settings, label: "Settings", path: "#" },
+  { icon: Bookmark, label: "Saved", path: "/saved" },
+  { icon: Settings, label: "Settings", path: "/settings" },
 ];
 
 const BottomNav = () => {

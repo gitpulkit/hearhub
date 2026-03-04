@@ -9,6 +9,8 @@ import GuideStudent from "./pages/GuideStudent";
 import Dashboard from "./pages/Dashboard";
 import Assessment from "./pages/Assessment";
 import NotFound from "./pages/NotFound";
+import PersonalizeApp from "./pages/PersonalizeApp";
+import SavedTools from "./pages/SavedTools";
 
 const queryClient = new QueryClient();
 
@@ -23,6 +25,8 @@ const App = () => (
           <Route path="/onboarding" element={<Onboarding />} />
           <Route path="/guide/:category" element={<GuideStudent />} />
           <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/settings" element={<PersonalizeApp />} />
+          <Route path="/saved" element={<SavedTools />} />
           <Route path="/assessment/:scenario" element={<Assessment />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
