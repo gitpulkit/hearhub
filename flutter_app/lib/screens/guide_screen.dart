@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_lucide/flutter_lucide.dart';
 import 'package:go_router/go_router.dart';
@@ -126,7 +127,8 @@ class GuideScreen extends StatelessWidget {
                                 maxLines: 1,
                                 overflow: TextOverflow.ellipsis,
                                 style: const TextStyle(
-                                  fontWeight: FontWeight.bold,
+                                  fontWeight: FontWeight.w600,
+                                  fontSize: 16,
                                   color: AppColors.foreground,
                                 ),
                               ),
@@ -136,7 +138,8 @@ class GuideScreen extends StatelessWidget {
                                 maxLines: 2,
                                 overflow: TextOverflow.ellipsis,
                                 style: const TextStyle(
-                                  fontSize: 14,
+                                  fontSize: 12,
+                                  height: 1.3,
                                   color: AppColors.mutedForeground,
                                 ),
                               ),
@@ -156,25 +159,9 @@ class GuideScreen extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(height: 16),
-                  AspectRatio(
-                    aspectRatio: 16 / 9,
-                    child: Container(
-                      decoration: BoxDecoration(
-                        color: AppColors.secondary,
-                        borderRadius: BorderRadius.circular(24),
-                      ),
-                      child: Center(
-                        child: Container(
-                          width: 64,
-                          height: 64,
-                          decoration: BoxDecoration(
-                            color: AppColors.primary.withOpacity(0.8),
-                            shape: BoxShape.circle,
-                          ),
-                          child: const Icon(LucideIcons.play, size: 32, color: AppColors.primaryForeground),
-                        ),
-                      ),
-                    ),
+                  const SizedBox(
+                    height: 220,
+                    child: _LiveTranscribeCarousel(),
                   ),
                   const SizedBox(height: 12),
                   Container(
@@ -260,6 +247,113 @@ class GuideScreen extends StatelessWidget {
             ),
           ),
         ],
+      ),
+    );
+  }
+}
+
+class _LiveTranscribeStepImage extends StatelessWidget {
+  const _LiveTranscribeStepImage(this.assetPath);
+
+  final String assetPath;
+
+  @override
+  Widget build(BuildContext context) {
+    return Image.asset(
+      assetPath,
+      fit: BoxFit.cover,
+    );
+  }
+}
+
+class _LiveTranscribeCarousel extends StatefulWidget {
+  const _LiveTranscribeCarousel();
+
+  @override
+  State<_LiveTranscribeCarousel> createState() => _LiveTranscribeCarouselState();
+}
+
+class _LiveTranscribeCarouselState extends State<_LiveTranscribeCarousel> {
+  final _controller = PageController();
+  int _currentPage = 0;
+  Timer? _timer;
+  bool _isPlaying = false;
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  void _startAutoScroll() {
+    _timer?.cancel();
+    _timer = Timer.periodic(const Duration(seconds: 1), (_) {
+      if (!mounted) return;
+      _currentPage = (_currentPage + 1) % 3;
+      _controller.animateToPage(
+        _currentPage,
+        duration: const Duration(milliseconds: 400),
+        curve: Curves.easeInOut,
+      );
+    });
+  }
+
+  void _stopAutoScroll() {
+    _timer?.cancel();
+    _timer = null;
+  }
+
+  @override
+  void dispose() {
+    _stopAutoScroll();
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(24),
+      child: GestureDetector(
+        behavior: HitTestBehavior.opaque,
+        onTap: () {
+          setState(() {
+            if (_isPlaying) {
+              _isPlaying = false;
+              _stopAutoScroll();
+            } else {
+              _isPlaying = true;
+              _startAutoScroll();
+            }
+          });
+        },
+        child: Stack(
+          children: [
+            PageView(
+              controller: _controller,
+              children: const [
+                _LiveTranscribeStepImage('assets/images/live_transcribe_step1.png'),
+                _LiveTranscribeStepImage('assets/images/live_transcribe_step2.png'),
+                _LiveTranscribeStepImage('assets/images/live_transcribe_step3.png'),
+              ],
+            ),
+            if (!_isPlaying)
+              Center(
+                child: Container(
+                  width: 64,
+                  height: 64,
+                  decoration: BoxDecoration(
+                    color: AppColors.primary.withOpacity(0.9),
+                    shape: BoxShape.circle,
+                  ),
+                  child: const Icon(
+                    LucideIcons.play,
+                    size: 32,
+                    color: AppColors.primaryForeground,
+                  ),
+                ),
+              ),
+          ],
+        ),
       ),
     );
   }

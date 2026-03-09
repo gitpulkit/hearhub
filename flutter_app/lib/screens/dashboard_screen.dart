@@ -10,9 +10,9 @@ class DashboardScreen extends StatelessWidget {
   const DashboardScreen({super.key});
 
   static const _topPicks = [
-    (name: 'Sound Amplifier', desc: 'Boost surrounding sounds', icon: LucideIcons.volume_2),
-    (name: 'Hearing Test Pro', desc: 'Check your hearing health', icon: LucideIcons.ear),
-    (name: 'Noise Reducer', desc: 'Filter background noise', icon: LucideIcons.headphones),
+    (id: 'sound-amplifier', name: 'Sound Amplifier', desc: 'Boost surrounding sounds', icon: LucideIcons.volume_2),
+    (id: 'hearing-test-pro', name: 'Hearing Test Pro', desc: 'Check your hearing health', icon: LucideIcons.ear),
+    (id: 'noise-reducer', name: 'Noise Reducer', desc: 'Filter background noise', icon: LucideIcons.headphones),
   ];
 
   static const _situations = [
@@ -84,7 +84,7 @@ class DashboardScreen extends StatelessWidget {
                   ),
                   const SizedBox(height: 16),
                   SizedBox(
-                    height: 220,
+                    height: 260,
                     child: ListView.separated(
                       scrollDirection: Axis.horizontal,
                       itemCount: _topPicks.length,
@@ -128,13 +128,34 @@ class DashboardScreen extends StatelessWidget {
                                   color: AppColors.mutedForeground,
                                 ),
                               ),
-                              const Spacer(),
+                              const SizedBox(height: 12),
                               HearHubButton(
                                 onPressed: () {},
+                                minHeight: 40,
+                                borderRadius: 24,
+                                isExpanded: true,
+                                child: const Text(
+                                  'Get',
+                                  style: TextStyle(
+                                    fontSize: 12,
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                                ),
+                              ),
+                              const SizedBox(height: 8),
+                              HearHubButton(
+                                onPressed: () => context.go('/tool/${p.id}'),
                                 minHeight: 36,
                                 borderRadius: 24,
-                                isExpanded: false,
-                                child: const Text('Get', style: TextStyle(fontSize: 12)),
+                                isExpanded: true,
+                                variant: HearHubButtonVariant.secondary,
+                                child: const Text(
+                                  'Learn more',
+                                  style: TextStyle(
+                                    fontSize: 12,
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                                ),
                               ),
                             ],
                           ),

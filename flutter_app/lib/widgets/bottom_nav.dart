@@ -9,10 +9,10 @@ class BottomNav extends StatelessWidget {
 
   static const _navItems = [
     (icon: LucideIcons.house, label: 'Home', path: '/dashboard'),
-    (icon: LucideIcons.compass, label: 'Discover', path: null),
+    (icon: LucideIcons.compass, label: 'Discover', path: '/discover'),
     (icon: LucideIcons.search, label: 'Search', path: null),
     (icon: LucideIcons.bookmark, label: 'Saved', path: '/saved'),
-      (icon: LucideIcons.settings, label: 'Settings', path: '/settings'),
+    (icon: LucideIcons.settings, label: 'Settings', path: '/settings'),
   ];
 
   @override

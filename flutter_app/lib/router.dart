@@ -8,6 +8,8 @@ import 'screens/personalize_screen.dart';
 import 'screens/saved_screen.dart';
 import 'screens/assessment_screen.dart';
 import 'screens/not_found_screen.dart';
+import 'screens/tool_detail_screen.dart';
+import 'screens/discover_screen.dart';
 
 final appRouter = GoRouter(
   initialLocation: '/',
@@ -32,6 +34,10 @@ final appRouter = GoRouter(
       builder: (context, state) => const DashboardScreen(),
     ),
     GoRoute(
+      path: '/discover',
+      builder: (context, state) => const DiscoverScreen(),
+    ),
+    GoRoute(
       path: '/saved',
       builder: (context, state) => const SavedScreen(),
     ),
@@ -44,6 +50,13 @@ final appRouter = GoRouter(
       builder: (context, state) {
         final scenario = state.pathParameters['scenario'] ?? 'restaurant';
         return AssessmentScreen(scenario: scenario);
+      },
+    ),
+    GoRoute(
+      path: '/tool/:toolId',
+      builder: (context, state) {
+        final toolId = state.pathParameters['toolId'] ?? 'sound-amplifier';
+        return ToolDetailScreen(toolId: toolId);
       },
     ),
   ],
