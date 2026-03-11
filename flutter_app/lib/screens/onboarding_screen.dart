@@ -20,6 +20,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
     (id: 'professional', icon: LucideIcons.briefcase, label: 'I am a professional', isSecondary: false),
     (id: 'parent', icon: LucideIcons.users, label: 'I am a parent', isSecondary: true),
     (id: 'senior', icon: LucideIcons.heart, label: 'I am a senior', isSecondary: false),
+    (id: 'caregiver', icon: LucideIcons.hand_helping, label: 'I am a caregiver', isSecondary: true),
   ];
 
   @override

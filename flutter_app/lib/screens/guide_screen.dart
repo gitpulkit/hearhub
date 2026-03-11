@@ -28,6 +28,7 @@ class GuideScreen extends StatelessWidget {
       case 'professional': return 'For Professionals';
       case 'parent': return 'For Parents';
       case 'senior': return 'For Seniors';
+      case 'caregiver': return 'For Caregivers';
       default: return 'For Students';
     }
   }
@@ -38,6 +39,7 @@ class GuideScreen extends StatelessWidget {
       case 'professional': return 'Tools and tips for the workplace.';
       case 'parent': return 'Tools and tips for family life.';
       case 'senior': return 'Tools and tips for everyday life.';
+      case 'caregiver': return 'Tools and tips to support someone you care for.';
       default: return 'Tools and tips to help you.';
     }
   }
@@ -286,7 +288,7 @@ class _LiveTranscribeCarouselState extends State<_LiveTranscribeCarousel> {
 
   void _startAutoScroll() {
     _timer?.cancel();
-    _timer = Timer.periodic(const Duration(seconds: 1), (_) {
+    _timer = Timer.periodic(const Duration(milliseconds: 1500), (_) {
       if (!mounted) return;
       _currentPage = (_currentPage + 1) % 3;
       _controller.animateToPage(
