@@ -51,10 +51,17 @@ class _AssessmentScreenState extends State<AssessmentScreen> {
     ),
   };
 
-  void _handleAnswer() {
+  void _handleAnswer({required bool yes}) {
     setState(() => _answered = true);
     Future.delayed(const Duration(milliseconds: 1200), () {
-      if (mounted) context.go('/dashboard');
+      if (!mounted) return;
+      if (yes) {
+        // "Yes, often" → show relevant tools for this scenario
+        context.go('/tools?scenario=${widget.scenario}');
+      } else {
+        // "No, rarely" → back to dashboard
+        context.go('/dashboard');
+      }
     });
   }
 
@@ -88,9 +95,9 @@ class _AssessmentScreenState extends State<AssessmentScreen> {
                   ),
                   textAlign: TextAlign.center,
                 ),
-                const SizedBox(height: 12),
+                  const SizedBox(height: 12),
                 Text(
-                  'Your answer helps us personalize your experience.',
+                  'Finding the best tools for you...',
                   style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                     color: AppColors.mutedForeground,
                   ),
@@ -181,7 +188,7 @@ class _AssessmentScreenState extends State<AssessmentScreen> {
                     ),
                     const SizedBox(height: 32),
                     HearHubButton(
-                      onPressed: _handleAnswer,
+                      onPressed: () => _handleAnswer(yes: true),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
@@ -193,7 +200,7 @@ class _AssessmentScreenState extends State<AssessmentScreen> {
                     ),
                     const SizedBox(height: 16),
                     HearHubButton(
-                      onPressed: _handleAnswer,
+                      onPressed: () => _handleAnswer(yes: false),
                       variant: HearHubButtonVariant.accent,
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,

@@ -75,12 +75,35 @@ class DashboardScreen extends StatelessWidget {
                   ),
                   const SizedBox(height: 32),
                   // Top Picks
-                  Text(
-                    'Top Picks',
-                    style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                      fontWeight: FontWeight.w600,
-                      color: AppColors.foreground,
-                    ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        'Top Picks',
+                        style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                          fontWeight: FontWeight.w600,
+                          color: AppColors.foreground,
+                        ),
+                      ),
+                      GestureDetector(
+                        onTap: () => context.go('/tools'),
+                        child: Row(
+                          children: const [
+                            Text(
+                              'See all',
+                              style: TextStyle(
+                                fontSize: 13,
+                                fontWeight: FontWeight.w600,
+                                color: AppColors.primary,
+                              ),
+                            ),
+                            SizedBox(width: 2),
+                            Icon(LucideIcons.chevron_right,
+                                size: 14, color: AppColors.primary),
+                          ],
+                        ),
+                      ),
+                    ],
                   ),
                   const SizedBox(height: 16),
                   SizedBox(
@@ -165,12 +188,35 @@ class DashboardScreen extends StatelessWidget {
                   ),
                   const SizedBox(height: 32),
                   // Daily Situations
-                  Text(
-                    'Daily Situations',
-                    style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                      fontWeight: FontWeight.w600,
-                      color: AppColors.foreground,
-                    ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        'Daily Situations',
+                        style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                          fontWeight: FontWeight.w600,
+                          color: AppColors.foreground,
+                        ),
+                      ),
+                      GestureDetector(
+                        onTap: () => context.go('/tools'),
+                        child: Row(
+                          children: const [
+                            Text(
+                              'Browse tools',
+                              style: TextStyle(
+                                fontSize: 13,
+                                fontWeight: FontWeight.w600,
+                                color: AppColors.primary,
+                              ),
+                            ),
+                            SizedBox(width: 2),
+                            Icon(LucideIcons.chevron_right,
+                                size: 14, color: AppColors.primary),
+                          ],
+                        ),
+                      ),
+                    ],
                   ),
                   const SizedBox(height: 16),
                   GridView.count(

@@ -10,7 +10,7 @@ class BottomNav extends StatelessWidget {
   static const _navItems = [
     (icon: LucideIcons.house, label: 'Home', path: '/dashboard'),
     (icon: LucideIcons.compass, label: 'Discover', path: '/discover'),
-    (icon: LucideIcons.search, label: 'Search', path: null),
+    (icon: LucideIcons.search, label: 'Search', path: '/search'),
     (icon: LucideIcons.bookmark, label: 'Saved', path: '/saved'),
     (icon: LucideIcons.settings, label: 'Settings', path: '/settings'),
   ];
@@ -32,11 +32,9 @@ class BottomNav extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: _navItems.map((item) {
-              final isActive = item.path != null && currentPath == item.path;
+              final isActive = currentPath == item.path;
               return IconButton(
-                onPressed: item.path != null
-                    ? () => context.go(item.path!)
-                    : null,
+                onPressed: () => context.go(item.path),
                 style: IconButton.styleFrom(
                   minimumSize: const Size(48, 48),
                   foregroundColor: isActive

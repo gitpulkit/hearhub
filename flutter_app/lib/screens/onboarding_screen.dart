@@ -50,14 +50,22 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
               // Progress
               ClipRRect(
                 borderRadius: BorderRadius.circular(2),
-                child: LinearProgressIndicator(
+                child: const LinearProgressIndicator(
                   value: 0.25,
                   backgroundColor: AppColors.secondary,
-                  valueColor: const AlwaysStoppedAnimation<Color>(AppColors.primary),
+                  valueColor: AlwaysStoppedAnimation<Color>(AppColors.primary),
                   minHeight: 8,
                 ),
               ),
-              const SizedBox(height: 32),
+              const SizedBox(height: 8),
+              const Text(
+                'Step 1 of 4',
+                style: TextStyle(
+                  fontSize: 12,
+                  color: AppColors.mutedForeground,
+                ),
+              ),
+              const SizedBox(height: 24),
               Text(
                 'How can we help?',
                 style: Theme.of(context).textTheme.headlineSmall?.copyWith(
@@ -93,7 +101,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                             width: isSelected ? 2 : 2,
                           ),
                           boxShadow: isSelected
-                              ? [BoxShadow(color: AppColors.primary.withOpacity(0.2), blurRadius: 8, offset: const Offset(0, 2))]
+                              ? [BoxShadow(color: AppColors.primary.withValues(alpha: 0.2), blurRadius: 8, offset: const Offset(0, 2))]
                               : null,
                         ),
                         child: Row(
@@ -133,7 +141,9 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
               Padding(
                 padding: const EdgeInsets.only(top: 32, bottom: 16),
                 child: HearHubButton(
-                  onPressed: _selected != null ? () => context.go('/guide/$_selected') : null,
+                  onPressed: _selected != null
+                      ? () => context.go('/onboarding/hearing/$_selected')
+                      : null,
                   child: const Text('Continue'),
                 ),
               ),

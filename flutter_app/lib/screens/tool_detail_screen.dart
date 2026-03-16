@@ -59,11 +59,177 @@ class ToolDetailScreen extends StatelessWidget {
       contexts: ['Work meetings', 'Commuting', 'Open offices'],
       imageAsset: 'assets/images/noise_reducer.png',
     ),
+    'live-transcribe': _ToolDetail(
+      name: 'Live Transcribe',
+      tagline: 'Real-time speech‑to‑text for lectures and meetings.',
+      icon: LucideIcons.mic,
+      helpsWith: [
+        'Follow along in lectures, meetings, or group discussions.',
+        'Get an instant written record of any spoken conversation.',
+      ],
+      steps: [
+        'Download Live Transcribe from the Google Play Store.',
+        'Open the app and grant microphone permission.',
+        'Point your phone at the speaker — transcription starts automatically.',
+      ],
+      contexts: ['Classrooms', 'Meetings', 'Conferences'],
+      imageAsset: 'assets/images/live_transcribe.png',
+    ),
+    'otter-ai': _ToolDetail(
+      name: 'Otter.ai',
+      tagline: 'AI‑powered note‑taking from spoken words.',
+      icon: LucideIcons.file_text,
+      helpsWith: [
+        'Automatically generate notes from lectures and calls.',
+        'Search and highlight key moments in any transcript.',
+      ],
+      steps: [
+        'Sign up at otter.ai or download the mobile app.',
+        'Start a new conversation and let Otter record and transcribe.',
+        'Review, edit, and share your notes after the session.',
+      ],
+      contexts: ['Classrooms', 'Work meetings', 'Interviews'],
+      imageAsset: 'assets/images/otter_ai.png',
+    ),
+    'caption-call': _ToolDetail(
+      name: 'CaptionCall',
+      tagline: 'Automatically captions every phone call.',
+      icon: LucideIcons.phone,
+      helpsWith: [
+        'Read what the other person is saying during any phone call.',
+        'Never miss important words or instructions over the phone.',
+      ],
+      steps: [
+        'Download CaptionCall or request a captioned phone.',
+        'Make or receive a call as normal.',
+        'Read the captions that appear on screen in real time.',
+      ],
+      contexts: ['At Home', 'Doctor calls', 'Customer service'],
+      imageAsset: 'assets/images/caption_call.png',
+    ),
+    'roger-pen': _ToolDetail(
+      name: 'Roger Pen',
+      tagline: 'Directional mic that streams directly to hearing aids.',
+      icon: LucideIcons.mic_vocal,
+      helpsWith: [
+        'Hear a single speaker clearly in noisy environments.',
+        'Stream speech wirelessly to compatible hearing aids or cochlear implants.',
+      ],
+      steps: [
+        'Pair the Roger Pen with your hearing aid or receiver.',
+        'Place the pen near the speaker or pass it around a table.',
+        'Speech is streamed directly into your hearing device.',
+      ],
+      contexts: ['Restaurants', 'Meetings', 'Classrooms'],
+      imageAsset: 'assets/images/roger_pen.png',
+    ),
+    'alertmaster': _ToolDetail(
+      name: 'AlertMaster',
+      tagline: 'Visual and vibrating alerts for home sounds.',
+      icon: LucideIcons.bell,
+      helpsWith: [
+        'Know when the doorbell, phone, or smoke alarm goes off.',
+        'Get visual or bed‑shaker alerts while you sleep.',
+      ],
+      steps: [
+        'Install AlertMaster receivers in the rooms you use most.',
+        'Pair each receiver with the sounds you want to monitor.',
+        'Receive a flash or vibration whenever those sounds occur.',
+      ],
+      contexts: ['At Home', 'Bedroom', 'Living room'],
+      imageAsset: 'assets/images/alertmaster.png',
+    ),
+    'hearing-loop-guide': _ToolDetail(
+      name: 'Hearing Loop Guide',
+      tagline: 'How to use hearing loops in public venues.',
+      icon: LucideIcons.info,
+      helpsWith: [
+        'Pick up clearer audio directly in your hearing aid.',
+        'Identify venues that support hearing loop technology.',
+      ],
+      steps: [
+        'Look for the hearing loop symbol at the venue entrance.',
+        'Switch your hearing aid to the "T" (telecoil) setting.',
+        'You will receive audio directly without background noise.',
+      ],
+      contexts: ['Restaurants', 'Cinemas', 'Classrooms', 'Places of worship'],
+      imageAsset: 'assets/images/hearing_loop_guide.png',
+    ),
+    'workplace-guide': _ToolDetail(
+      name: 'Workplace Accommodations',
+      tagline: 'Know your rights and get the right support at work.',
+      icon: LucideIcons.briefcase,
+      helpsWith: [
+        'Request the hearing accommodations you are entitled to.',
+        'Set up captioning, remote CART, or assistive devices at work.',
+      ],
+      steps: [
+        'Speak to your HR department or disability coordinator.',
+        'Document your hearing needs and preferred accommodations.',
+        'Follow up to ensure the agreed tools are in place.',
+      ],
+      contexts: ['Open offices', 'Remote work', 'Team meetings'],
+      imageAsset: 'assets/images/workplace_guide.png',
+    ),
   };
 
   @override
   Widget build(BuildContext context) {
-    final detail = _tools[toolId] ?? _tools.values.first;
+    final detail = _tools[toolId];
+
+    // Unknown toolId — show a graceful not-found state
+    if (detail == null) {
+      return MobileLayout(
+        child: SafeArea(
+          child: Padding(
+            padding: const EdgeInsets.all(32),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Container(
+                  width: 72,
+                  height: 72,
+                  decoration: const BoxDecoration(
+                    color: AppColors.secondary,
+                    shape: BoxShape.circle,
+                  ),
+                  child: const Icon(LucideIcons.search_x,
+                      size: 32, color: AppColors.primary),
+                ),
+                const SizedBox(height: 20),
+                const Text(
+                  'Tool not found',
+                  style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                    color: AppColors.foreground,
+                  ),
+                ),
+                const SizedBox(height: 8),
+                Text(
+                  '"$toolId" is not in our library yet.',
+                  textAlign: TextAlign.center,
+                  style: const TextStyle(
+                    fontSize: 14,
+                    color: AppColors.mutedForeground,
+                  ),
+                ),
+                const SizedBox(height: 32),
+                TextButton.icon(
+                  onPressed: () => context.go('/tools'),
+                  icon: const Icon(LucideIcons.arrow_left,
+                      size: 16, color: AppColors.primary),
+                  label: const Text(
+                    'Browse all tools',
+                    style: TextStyle(color: AppColors.primary),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      );
+    }
 
     return MobileLayout(
       child: SafeArea(
