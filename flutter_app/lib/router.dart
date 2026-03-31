@@ -1,4 +1,5 @@
 import 'package:go_router/go_router.dart';
+import 'auth/state/auth_state.dart';
 import 'screens/index_screen.dart';
 import 'screens/onboarding_screen.dart';
 import 'screens/guide_screen.dart';
@@ -13,10 +14,39 @@ import 'screens/search_screen.dart';
 import 'screens/onboarding_step2_screen.dart';
 import 'screens/onboarding_step3_screen.dart';
 import 'screens/tools_screen.dart';
+import 'screens/login_screen.dart';
+import 'screens/signup_screen.dart';
 
-final appRouter = GoRouter(
-  initialLocation: '/',
+GoRouter createAppRouter(AuthState authState) => GoRouter(
+  initialLocation: '/login',
+  refreshListenable: authState,
+  redirect: (context, state) {
+    final location = state.matchedLocation;
+    final isAuthRoute = location == '/login' || location == '/signup';
+
+    if (!authState.isInitialized) {
+      return null;
+    }
+
+    if (!authState.isAuthenticated && !isAuthRoute) {
+      return '/login';
+    }
+
+    if (authState.isAuthenticated && isAuthRoute) {
+      return '/dashboard';
+    }
+
+    return null;
+  },
   routes: [
+    GoRoute(
+      path: '/login',
+      builder: (context, state) => LoginScreen(authState: authState),
+    ),
+    GoRoute(
+      path: '/signup',
+      builder: (context, state) => SignupScreen(authState: authState),
+    ),
     GoRoute(
       path: '/',
       builder: (context, state) => const IndexScreen(),
@@ -64,7 +94,7 @@ final appRouter = GoRouter(
     ),
     GoRoute(
       path: '/settings',
-      builder: (context, state) => const PersonalizeScreen(),
+      builder: (context, state) => PersonalizeScreen(authState: authState),
     ),
     GoRoute(
       path: '/assessment/:scenario',
