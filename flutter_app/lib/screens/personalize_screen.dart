@@ -1,11 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_lucide/flutter_lucide.dart';
+import 'package:go_router/go_router.dart';
+import '../auth/state/auth_state.dart';
 import '../theme/app_colors.dart';
 import '../widgets/mobile_layout.dart';
 import '../widgets/bottom_nav.dart';
+import '../widgets/hearhub_button.dart';
 
 class PersonalizeScreen extends StatefulWidget {
-  const PersonalizeScreen({super.key});
+  const PersonalizeScreen({
+    super.key,
+    required this.authState,
+  });
+
+  final AuthState authState;
 
   @override
   State<PersonalizeScreen> createState() => _PersonalizeScreenState();
@@ -16,6 +24,7 @@ class _PersonalizeScreenState extends State<PersonalizeScreen> {
   bool _highContrast = true;
   bool _reducedMotion = false;
   bool _tactileFeedback = true;
+  bool _isLoggingOut = false;
 
   Widget _sectionLabel(String text) => Padding(
         padding: const EdgeInsets.only(left: 32, right: 32, top: 24, bottom: 8),
@@ -197,6 +206,19 @@ class _PersonalizeScreenState extends State<PersonalizeScreen> {
                         ],
                       ),
                     ),
+                  ),
+                  const SizedBox(height: 20),
+                  HearHubButton(
+                    onPressed: _isLoggingOut
+                        ? null
+                        : () async {
+                            setState(() => _isLoggingOut = true);
+                            await widget.authState.logout();
+                            if (!context.mounted) return;
+                            context.go('/login');
+                          },
+                    variant: HearHubButtonVariant.accent,
+                    child: Text(_isLoggingOut ? 'Logging out...' : 'Logout'),
                   ),
                 ],
               ),
