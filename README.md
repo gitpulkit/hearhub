@@ -1,73 +1,101 @@
-# Welcome to your Lovable project
+# HearHub
 
-## Project info
+HearHub is an accessibility-focused mobile application designed to assist individuals with hearing impairments by improving their ability to engage in real-time conversations. The application emphasizes simplicity, usability, and practical impact through a clean interface and assistive interaction flows.
 
-**URL**: https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID
+---
 
-## How can I edit this code?
+## Overview
 
-There are several ways of editing your application.
+Hearing loss can make everyday interactions—such as conversations in classrooms, meetings, or public spaces—difficult to follow. HearHub addresses this challenge by providing a structured and intuitive platform that supports users during conversations and helps them better interpret spoken information.
 
-**Use Lovable**
+The project focuses on delivering a seamless user experience that reduces friction and makes assistive technology more approachable and effective.
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and start prompting.
+---
 
-Changes made via Lovable will be committed automatically to this repo.
+## Features
 
-**Use your preferred IDE**
+- Real-time conversation assistance through a speech-to-text interaction model  
+- Structured and accessible user interface built for clarity and ease of use  
+- Assistive tool recommendations to support different user needs  
+- Modular design enabling future enhancements such as conversation history and summaries  
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+---
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+## Technology Stack
 
-Follow these steps:
+- **Frontend:** Flutter (Dart)  
+- **Backend:** Node.js, Express.js  
+- **Version Control:** Git and GitHub  
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+---
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+## Architecture
 
-# Step 3: Install the necessary dependencies.
-npm i
+The project is organized into modular components to support scalability and maintainability:
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
-```
+- `flutter_app/` – Mobile application developed using Flutter  
+- `backend/` – Server-side logic and API services  
+- `public/`, `src/` – Supporting assets and application logic  
 
-**Edit a file directly in GitHub**
+This separation enables independent development and easier extension of features over time.
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+---
 
-**Use GitHub Codespaces**
+## Getting Started
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+### Prerequisites
 
-## What technologies are used for this project?
+Ensure the following are installed:
 
-This project is built with:
+- Flutter SDK  
+- Node.js (v16 or later recommended)  
+- Git  
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+Verify setup:
 
-## How can I deploy this project?
+```bash
+flutter doctor
+node -v
+npm -v
+Clone Repository
+git clone https://github.com/gitpulkit/hearhub.git
+cd hearhub
+Running the Application
+1. Start Backend Server
+cd backend
+npm install
+npm start
 
-Simply open [Lovable](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and click on Share -> Publish.
+The backend runs on:
 
-## Can I connect a custom domain to my Lovable project?
+http://localhost:3000
+2. Run Flutter Application
 
-Yes, you can!
+Open a new terminal:
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+cd flutter_app
+flutter pub get
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+Ensure a device or emulator is available:
+
+flutter devices
+
+Then run:
+
+flutter run
+Important Notes
+Ensure the backend server is running before starting the mobile application
+If running on a physical device, replace localhost in API calls with your machine’s local IP address
+Update API endpoints in the frontend if backend configuration differs
+Key Design Focus
+Accessibility-first approach
+Clean and minimal user interface
+Practical usability in real-world scenarios
+Extensible architecture for future development
+Future Scope
+
+Planned improvements include real-time speech recognition integration, multi-language support, cloud-based conversation storage, and intelligent summarization features to enhance user experience further.
+
+License
+
+This project is open-source and available for learning and development purposes.
