@@ -57,9 +57,11 @@ Verify setup:
 flutter doctor
 node -v
 npm -v
+
 Clone Repository
 git clone https://github.com/gitpulkit/hearhub.git
 cd hearhub
+
 Running the Application
 1. Start Backend Server
 cd backend
@@ -69,6 +71,7 @@ npm start
 The backend runs on:
 
 http://localhost:3000
+
 2. Run Flutter Application
 
 Open a new terminal:
