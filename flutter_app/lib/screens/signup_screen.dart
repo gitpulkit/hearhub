@@ -159,10 +159,6 @@ class _SignupScreenState extends State<SignupScreen> {
                   ),
                 ),
                 const SizedBox(height: 18),
-                TextButton(
-                  onPressed: _loading ? null : () => context.go('/login'),
-                  child: const Text('Already have an account? Login'),
-                ),
                 ],
               ),
             ),
