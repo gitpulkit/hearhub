@@ -215,7 +215,7 @@ class _PersonalizeScreenState extends State<PersonalizeScreen> {
                             setState(() => _isLoggingOut = true);
                             await widget.authState.logout();
                             if (!context.mounted) return;
-                            context.go('/login');
+                            context.go('/');
                           },
                     variant: HearHubButtonVariant.accent,
                     child: Text(_isLoggingOut ? 'Logging out...' : 'Logout'),
