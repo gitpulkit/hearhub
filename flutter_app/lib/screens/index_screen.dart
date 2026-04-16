@@ -91,12 +91,21 @@ class IndexScreen extends StatelessWidget {
                   )),
                 ],
               ),
-              Padding(
-                padding: const EdgeInsets.only(top: 32, bottom: 16),
-                child: HearHubButton(
-                  onPressed: () => context.go('/onboarding'),
-                  child: const Text('Get Started'),
-                ),
+              Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  HearHubButton(
+                    onPressed: () => context.push('/onboarding'),
+                    child: const Text('See Personalized Apps'),
+                  ),
+                  const SizedBox(height: 12),
+                  HearHubButton(
+                    variant: HearHubButtonVariant.secondary,
+                    onPressed: () => context.push('/tools'),
+                    child: const Text('See All Applications'),
+                  ),
+                  const SizedBox(height: 16),
+                ],
               ),
             ],
           ),

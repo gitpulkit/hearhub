@@ -72,7 +72,7 @@ class _SavedScreenState extends State<SavedScreen> {
   Widget _savedCard(BuildContext context, String tag, String title, String desc, String cta) {
     return Container(
       decoration: BoxDecoration(color: AppColors.card, borderRadius: BorderRadius.circular(18), boxShadow: [
-        BoxShadow(color: Colors.black.withOpacity(0.03), blurRadius: 8, offset: const Offset(0, 4)),
+        BoxShadow(color: Colors.black.withValues(alpha: 0.03), blurRadius: 8, offset: const Offset(0, 4)),
       ]),
       padding: const EdgeInsets.all(18),
       child: Column(
@@ -91,7 +91,7 @@ class _SavedScreenState extends State<SavedScreen> {
           Text(desc, style: const TextStyle(fontSize: 14, color: AppColors.mutedForeground)),
           const SizedBox(height: 14),
           Row(children: [
-            Expanded(child: HearHubButton(onPressed: () {}, child: Text(cta), minHeight: 48, borderRadius: 16)),
+            Expanded(child: HearHubButton(onPressed: () {}, minHeight: 48, borderRadius: 16, child: Text(cta))),
           ]),
         ],
       ),

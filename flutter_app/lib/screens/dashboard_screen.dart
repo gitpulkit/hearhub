@@ -86,7 +86,7 @@ class DashboardScreen extends StatelessWidget {
                         ),
                       ),
                       GestureDetector(
-                        onTap: () => context.go('/tools'),
+                        onTap: () => context.push('/tools'),
                         child: Row(
                           children: const [
                             Text(
@@ -167,7 +167,7 @@ class DashboardScreen extends StatelessWidget {
                               ),
                               const SizedBox(height: 8),
                               HearHubButton(
-                                onPressed: () => context.go('/tool/${p.id}'),
+                                onPressed: () => context.push('/tool/${p.id}'),
                                 minHeight: 36,
                                 borderRadius: 24,
                                 isExpanded: true,
@@ -199,7 +199,7 @@ class DashboardScreen extends StatelessWidget {
                         ),
                       ),
                       GestureDetector(
-                        onTap: () => context.go('/tools'),
+                        onTap: () => context.push('/tools'),
                         child: Row(
                           children: const [
                             Text(
@@ -228,7 +228,7 @@ class DashboardScreen extends StatelessWidget {
                     mainAxisExtent: 140,
                     children: _situations.map((s) {
                       return GestureDetector(
-                        onTap: () => context.go('/assessment/${s.id}'),
+                        onTap: () => context.push('/assessment/${s.id}'),
                         child: Container(
                           padding: const EdgeInsets.all(20),
                           decoration: BoxDecoration(
