@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_lucide/flutter_lucide.dart';
 import 'package:go_router/go_router.dart';
 import '../theme/app_colors.dart';
+import '../utils/navigation.dart';
 import '../widgets/mobile_layout.dart';
 import '../widgets/hearhub_button.dart';
 
@@ -59,7 +60,7 @@ class _OnboardingStep2ScreenState extends State<OnboardingStep2Screen> {
             children: [
               // Back button
               GestureDetector(
-                onTap: () => context.go('/onboarding'),
+                onTap: () => context.popOrGo('/onboarding'),
                 child: Container(
                   width: 48,
                   height: 48,
@@ -211,7 +212,7 @@ class _OnboardingStep2ScreenState extends State<OnboardingStep2Screen> {
                 padding: const EdgeInsets.only(top: 24, bottom: 8),
                 child: HearHubButton(
                   onPressed: _selected != null
-                      ? () => context.go(
+                      ? () => context.push(
                             '/onboarding/environments/${widget.category}',
                           )
                       : null,

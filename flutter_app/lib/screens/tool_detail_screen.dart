@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_lucide/flutter_lucide.dart';
-import 'package:go_router/go_router.dart';
 import '../theme/app_colors.dart';
+import '../utils/navigation.dart';
 import '../widgets/mobile_layout.dart';
 import '../widgets/hearhub_button.dart';
 
@@ -216,7 +216,7 @@ class ToolDetailScreen extends StatelessWidget {
                 ),
                 const SizedBox(height: 32),
                 TextButton.icon(
-                  onPressed: () => context.go('/tools'),
+                  onPressed: () => context.popOrGo('/tools'),
                   icon: const Icon(LucideIcons.arrow_left,
                       size: 16, color: AppColors.primary),
                   label: const Text(
@@ -243,7 +243,7 @@ class ToolDetailScreen extends StatelessWidget {
                 Row(
                   children: [
                     IconButton(
-                      onPressed: () => context.go('/dashboard'),
+                      onPressed: () => context.popOrGo('/tools'),
                       icon: const Icon(LucideIcons.chevron_left, color: AppColors.foreground),
                     ),
                     const SizedBox(width: 8),

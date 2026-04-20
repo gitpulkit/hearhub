@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_lucide/flutter_lucide.dart';
 import 'package:go_router/go_router.dart';
 import '../theme/app_colors.dart';
+import '../utils/navigation.dart';
 import '../widgets/mobile_layout.dart';
 import '../widgets/bottom_nav.dart';
 import '../data/tools_data.dart';
@@ -86,7 +87,7 @@ class _ToolsScreenState extends State<ToolsScreen> {
                 child: Row(
                   children: [
                     GestureDetector(
-                      onTap: () => context.go('/dashboard'),
+                      onTap: () => context.popOrGo('/dashboard'),
                       child: Container(
                         width: 40,
                         height: 40,
@@ -281,7 +282,7 @@ class _ToolsScreenState extends State<ToolsScreen> {
                           return _ToolCard(
                             tool: tool,
                             isHighlighted: isHighlighted,
-                            onTap: () => context.go('/tool/${tool.id}'),
+                            onTap: () => context.push('/tool/${tool.id}'),
                           );
                         },
                       ),

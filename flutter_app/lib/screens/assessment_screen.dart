@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_lucide/flutter_lucide.dart';
 import 'package:go_router/go_router.dart';
 import '../theme/app_colors.dart';
+import '../utils/navigation.dart';
 import '../widgets/mobile_layout.dart';
 import '../widgets/hearhub_button.dart';
 
@@ -57,7 +58,7 @@ class _AssessmentScreenState extends State<AssessmentScreen> {
       if (!mounted) return;
       if (yes) {
         // "Yes, often" → show relevant tools for this scenario
-        context.go('/tools?scenario=${widget.scenario}');
+        context.push('/tools?scenario=${widget.scenario}');
       } else {
         // "No, rarely" → back to dashboard
         context.go('/dashboard');
@@ -121,7 +122,7 @@ class _AssessmentScreenState extends State<AssessmentScreen> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   GestureDetector(
-                    onTap: () => context.go('/dashboard'),
+                    onTap: () => context.popOrGo('/dashboard'),
                     child: Container(
                       width: 48,
                       height: 48,
@@ -142,7 +143,7 @@ class _AssessmentScreenState extends State<AssessmentScreen> {
                     ),
                   ),
                   GestureDetector(
-                    onTap: () => context.go('/dashboard'),
+                    onTap: () => context.popOrGo('/dashboard'),
                     child: const Text(
                       'Skip',
                       style: TextStyle(
