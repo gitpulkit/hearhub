@@ -30,10 +30,10 @@ class HearHubButton extends StatelessWidget {
     };
 
     final effectiveColor = onPressed == null
-        ? backgroundColor.withValues(alpha: 0.5)
+        ? backgroundColor.withOpacity(0.5)
         : backgroundColor;
     final effectiveForeground = onPressed == null
-        ? foregroundColor.withValues(alpha: 0.7)
+        ? foregroundColor.withOpacity(0.7)
         : foregroundColor;
 
     final button = Material(

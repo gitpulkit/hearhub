@@ -56,7 +56,7 @@ class _SearchScreenState extends State<SearchScreen> {
     _controller.clear();
     setState(() => _query = '');
     _focusNode.unfocus();
-    context.push('/tool/${tool.id}');
+    context.go('/tool/${tool.id}');
   }
 
   void _onSubmitted(String value) {
@@ -97,173 +97,177 @@ class _SearchScreenState extends State<SearchScreen> {
     return MobileLayout(
       child: Stack(
         children: [
-          Padding(
-            padding: const EdgeInsets.only(left: 24, right: 24, top: 32),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const Text(
-                  'Search',
-                  style: TextStyle(
-                    fontSize: 28,
-                    fontWeight: FontWeight.w800,
-                    color: AppColors.foreground,
-                  ),
-                ),
-                const SizedBox(height: 20),
-
-                // ── Search bar (anchored) ─────────────────────────
-                Material(
-                  color: AppColors.card,
-                  borderRadius: BorderRadius.circular(32),
-                  elevation: 2,
-                  shadowColor: Colors.black.withValues(alpha: 0.06),
-                  child: TextField(
-                    controller: _controller,
-                    focusNode: _focusNode,
-                    onSubmitted: _onSubmitted,
-                    textInputAction: TextInputAction.search,
-                    style: const TextStyle(
-                      fontSize: 15,
+          SingleChildScrollView(
+            child: Padding(
+              padding: const EdgeInsets.only(
+                left: 24,
+                right: 24,
+                top: 32,
+                bottom: 120,
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Text(
+                    'Search',
+                    style: TextStyle(
+                      fontSize: 28,
+                      fontWeight: FontWeight.w800,
                       color: AppColors.foreground,
                     ),
-                    decoration: InputDecoration(
-                      hintText: 'Search tools or situations...',
-                      hintStyle: const TextStyle(
+                  ),
+                  const SizedBox(height: 20),
+
+                  // ── Search bar ──────────────────────────────────
+                  Material(
+                    color: AppColors.card,
+                    borderRadius: BorderRadius.circular(32),
+                    elevation: 2,
+                    shadowColor: Colors.black.withValues(alpha: 0.06),
+                    child: TextField(
+                      controller: _controller,
+                      focusNode: _focusNode,
+                      onSubmitted: _onSubmitted,
+                      textInputAction: TextInputAction.search,
+                      style: const TextStyle(
                         fontSize: 15,
-                        color: AppColors.mutedForeground,
+                        color: AppColors.foreground,
                       ),
-                      prefixIcon: const Padding(
-                        padding: EdgeInsets.only(left: 16, right: 8),
-                        child: Icon(
-                          LucideIcons.search,
-                          size: 20,
+                      decoration: InputDecoration(
+                        hintText: 'Search tools or situations...',
+                        hintStyle: const TextStyle(
+                          fontSize: 15,
                           color: AppColors.mutedForeground,
                         ),
-                      ),
-                      prefixIconConstraints: const BoxConstraints(
-                        minWidth: 0,
-                        minHeight: 0,
-                      ),
-                      suffixIcon: isSearching
-                          ? IconButton(
-                              icon: const Icon(LucideIcons.x,
-                                  size: 16,
-                                  color: AppColors.mutedForeground),
-                              onPressed: () {
-                                _controller.clear();
-                                setState(() => _query = '');
-                              },
-                            )
-                          : null,
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(32),
-                        borderSide: BorderSide.none,
-                      ),
-                      filled: true,
-                      fillColor: AppColors.card,
-                      contentPadding: const EdgeInsets.symmetric(
-                        horizontal: 16,
-                        vertical: 16,
+                        prefixIcon: const Padding(
+                          padding: EdgeInsets.only(left: 16, right: 8),
+                          child: Icon(
+                            LucideIcons.search,
+                            size: 20,
+                            color: AppColors.mutedForeground,
+                          ),
+                        ),
+                        prefixIconConstraints: const BoxConstraints(
+                          minWidth: 0,
+                          minHeight: 0,
+                        ),
+                        suffixIcon: isSearching
+                            ? IconButton(
+                                icon: const Icon(LucideIcons.x,
+                                    size: 16,
+                                    color: AppColors.mutedForeground),
+                                onPressed: () {
+                                  _controller.clear();
+                                  setState(() => _query = '');
+                                },
+                              )
+                            : null,
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(32),
+                          borderSide: BorderSide.none,
+                        ),
+                        filled: true,
+                        fillColor: AppColors.card,
+                        contentPadding: const EdgeInsets.symmetric(
+                          horizontal: 16,
+                          vertical: 16,
+                        ),
                       ),
                     ),
                   ),
-                ),
-                const SizedBox(height: 8),
 
-                // ── Scrollable content region only ────────────────
-                Expanded(
-                  child: isSearching
-                      ? ListView(
-                          padding: const EdgeInsets.only(bottom: 120),
-                          children: [
-                            if (suggestions.isEmpty)
-                              _NoResultsTile(query: _query)
-                            else
-                              Material(
-                                color: AppColors.card,
-                                borderRadius: BorderRadius.circular(20),
-                                elevation: 3,
-                                shadowColor: Colors.black.withValues(alpha: 0.07),
-                                child: Column(
-                                  children: List.generate(suggestions.length, (i) {
-                                    final tool = suggestions[i];
-                                    final isLast = i == suggestions.length - 1;
-                                    return _SuggestionTile(
-                                      tool: tool,
-                                      isLast: isLast,
-                                      onTap: () => _navigateToTool(tool),
-                                    );
-                                  }),
-                                ),
-                              ),
-                          ],
-                        )
-                      : ListView(
-                          padding: const EdgeInsets.only(top: 24, bottom: 120),
-                          children: [
-                            // Popular Categories
-                            const _SectionLabel('Popular Categories'),
-                            const SizedBox(height: 16),
-                            Wrap(
-                              spacing: 10,
-                              runSpacing: 10,
-                              children: _categories.map((c) {
-                                return _CategoryChip(
-                                  label: c.label,
-                                  icon: c.icon,
-                                  isSecondary: c.isSecondary,
-                                );
-                              }).toList(),
-                            ),
-                            const SizedBox(height: 32),
-
-                            // Recent Searches header
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                const _SectionLabel('Recent Searches'),
-                                if (_recentSearches.isNotEmpty)
-                                  GestureDetector(
-                                    onTap: _clearAll,
-                                    child: const Text(
-                                      'Clear all',
-                                      style: TextStyle(
-                                        fontSize: 13,
-                                        fontWeight: FontWeight.w600,
-                                        color: AppColors.primary,
-                                      ),
-                                    ),
-                                  ),
-                              ],
-                            ),
-                            const SizedBox(height: 8),
-                            if (_recentSearches.isEmpty)
-                              const Padding(
-                                padding: EdgeInsets.symmetric(vertical: 16),
-                                child: Text(
-                                  'No recent searches',
-                                  style: TextStyle(
-                                    fontSize: 14,
-                                    color: AppColors.mutedForeground,
-                                  ),
-                                ),
-                              )
-                            else
-                              ...List.generate(_recentSearches.length, (i) {
-                                return _RecentSearchRow(
-                                  label: _recentSearches[i],
-                                  onRemove: () => _removeRecent(i),
-                                  onTap: () {
-                                    _controller.text = _recentSearches[i];
-                                    setState(() => _query = _recentSearches[i]);
-                                  },
-                                );
-                              }),
-                          ],
+                  // ── Live suggestions dropdown ────────────────────
+                  if (isSearching) ...[
+                    const SizedBox(height: 8),
+                    if (suggestions.isEmpty)
+                      _NoResultsTile(query: _query)
+                    else
+                      Material(
+                        color: AppColors.card,
+                        borderRadius: BorderRadius.circular(20),
+                        elevation: 3,
+                        shadowColor: Colors.black.withValues(alpha: 0.07),
+                        child: Column(
+                          children: List.generate(suggestions.length, (i) {
+                            final tool = suggestions[i];
+                            final isLast = i == suggestions.length - 1;
+                            return _SuggestionTile(
+                              tool: tool,
+                              isLast: isLast,
+                              onTap: () => _navigateToTool(tool),
+                            );
+                          }),
                         ),
-                ),
-              ],
+                      ),
+                  ],
+
+                  // ── Normal content (hidden while searching) ──────
+                  if (!isSearching) ...[
+                    const SizedBox(height: 32),
+
+                    // Popular Categories
+                    const _SectionLabel('Popular Categories'),
+                    const SizedBox(height: 16),
+                    Wrap(
+                      spacing: 10,
+                      runSpacing: 10,
+                      children: _categories.map((c) {
+                        return _CategoryChip(
+                          label: c.label,
+                          icon: c.icon,
+                          isSecondary: c.isSecondary,
+                        );
+                      }).toList(),
+                    ),
+
+                    const SizedBox(height: 32),
+
+                    // Recent Searches header
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        const _SectionLabel('Recent Searches'),
+                        if (_recentSearches.isNotEmpty)
+                          GestureDetector(
+                            onTap: _clearAll,
+                            child: const Text(
+                              'Clear all',
+                              style: TextStyle(
+                                fontSize: 13,
+                                fontWeight: FontWeight.w600,
+                                color: AppColors.primary,
+                              ),
+                            ),
+                          ),
+                      ],
+                    ),
+                    const SizedBox(height: 8),
+
+                    if (_recentSearches.isEmpty)
+                      const Padding(
+                        padding: EdgeInsets.symmetric(vertical: 16),
+                        child: Text(
+                          'No recent searches',
+                          style: TextStyle(
+                            fontSize: 14,
+                            color: AppColors.mutedForeground,
+                          ),
+                        ),
+                      )
+                    else
+                      ...List.generate(_recentSearches.length, (i) {
+                        return _RecentSearchRow(
+                          label: _recentSearches[i],
+                          onRemove: () => _removeRecent(i),
+                          onTap: () {
+                            _controller.text = _recentSearches[i];
+                            setState(() => _query = _recentSearches[i]);
+                          },
+                        );
+                      }),
+                  ],
+                ],
+              ),
             ),
           ),
 

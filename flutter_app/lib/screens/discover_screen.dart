@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_lucide/flutter_lucide.dart';
+import 'package:go_router/go_router.dart';
 import '../theme/app_colors.dart';
 import '../widgets/mobile_layout.dart';
-import '../utils/navigation.dart';
 
 class DiscoverScreen extends StatefulWidget {
   const DiscoverScreen({super.key});
@@ -66,7 +66,7 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
               child: Row(
                 children: [
                   IconButton(
-                    onPressed: () => context.popOrGo('/dashboard'),
+                    onPressed: () => context.go('/dashboard'),
                     icon: const Icon(LucideIcons.chevron_left, color: AppColors.foreground),
                   ),
                   const SizedBox(width: 8),

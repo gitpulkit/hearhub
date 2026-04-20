@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_lucide/flutter_lucide.dart';
 import 'package:go_router/go_router.dart';
 import '../theme/app_colors.dart';
-import '../utils/navigation.dart';
 import '../widgets/mobile_layout.dart';
 import '../widgets/hearhub_button.dart';
 
@@ -77,7 +76,7 @@ class _OnboardingStep3ScreenState extends State<OnboardingStep3Screen> {
             children: [
               // Back button
               GestureDetector(
-                onTap: () => context.popOrGo(
+                onTap: () => context.go(
                   '/onboarding/hearing/${widget.category}',
                 ),
                 child: Container(
@@ -235,7 +234,7 @@ class _OnboardingStep3ScreenState extends State<OnboardingStep3Screen> {
                 padding: const EdgeInsets.only(top: 24, bottom: 8),
                 child: HearHubButton(
                   onPressed: _selected.isNotEmpty
-                      ? () => context.push('/guide/${widget.category}')
+                      ? () => context.go('/guide/${widget.category}')
                       : null,
                   child: const Text('See my guide'),
                 ),

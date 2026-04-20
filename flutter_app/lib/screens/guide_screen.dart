@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_lucide/flutter_lucide.dart';
 import 'package:go_router/go_router.dart';
 import '../theme/app_colors.dart';
-import '../utils/navigation.dart';
 import '../widgets/mobile_layout.dart';
 import '../widgets/hearhub_button.dart';
 
@@ -58,7 +57,7 @@ class GuideScreen extends StatelessWidget {
                 children: [
                   // Header
                   GestureDetector(
-                    onTap: () => context.popOrGo('/onboarding'),
+                    onTap: () => context.go('/onboarding'),
                     child: Container(
                       width: 48,
                       height: 48,
@@ -170,7 +169,7 @@ class GuideScreen extends StatelessWidget {
                   Container(
                     padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
                     decoration: BoxDecoration(
-                      color: AppColors.foreground.withValues(alpha: 0.8),
+                      color: AppColors.foreground.withOpacity(0.8),
                       borderRadius: BorderRadius.circular(16),
                     ),
                     child: const Text(
@@ -345,7 +344,7 @@ class _LiveTranscribeCarouselState extends State<_LiveTranscribeCarousel> {
                   width: 64,
                   height: 64,
                   decoration: BoxDecoration(
-                    color: AppColors.primary.withValues(alpha: 0.9),
+                    color: AppColors.primary.withOpacity(0.9),
                     shape: BoxShape.circle,
                   ),
                   child: const Icon(
