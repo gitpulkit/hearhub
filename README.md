@@ -1,73 +1,142 @@
-# Welcome to your Lovable project
+# HearHub
 
-## Project info
+HearHub is an accessibility-focused application designed to assist individuals with hearing impairments by improving their ability to engage in real-time conversations. The system combines a mobile interface, backend services, and a web interface to deliver a structured and practical assistive experience.
 
-**URL**: https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID
+---
 
-## How can I edit this code?
+## Overview
 
-There are several ways of editing your application.
+Hearing loss can make everyday interactions—such as conversations in classrooms, meetings, or public spaces—difficult to follow. HearHub addresses this challenge by providing a clean, intuitive platform that supports real-time communication and user assistance.
 
-**Use Lovable**
+The project focuses on usability, accessibility, and modular design to enable future enhancements and real-world applicability.
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and start prompting.
+---
 
-Changes made via Lovable will be committed automatically to this repo.
+## Features
 
-**Use your preferred IDE**
+- Clean and accessible user interface designed for usability  
+- Authentication system with secure token-based access  
+- Modular architecture supporting mobile, backend, and web components  
+- Extensible design for future enhancements such as conversation history and summaries  
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+---
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+## Technology Stack
 
-Follow these steps:
+- **Mobile:** Flutter (Dart)  
+- **Backend:** Node.js, Express.js, MongoDB  
+- **Web:** React, TypeScript (Vite)  
+- **Version Control:** Git and GitHub  
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+---
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+## Architecture
 
-# Step 3: Install the necessary dependencies.
-npm i
+The project is organized into modular components:
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
+- `flutter_app/` – Mobile application (Flutter)  
+- `backend/` – Backend API and authentication services  
+- Root (`/`) – Web application (React + Vite)  
+
+This structure allows independent development and scaling of each component.
+
+---
+
+## Getting Started
+
+### Prerequisites
+
+Ensure the following are installed:
+
+- Flutter SDK  
+- Node.js (v16 or later recommended)  
+- Git  
+
+Verify setup:
+
+```bash
+flutter doctor
+node -v
+npm -v
+
+Installation
+Clone the repository:
+
+git clone https://github.com/gitpulkit/hearhub.git
+cd hearhub
+
+--Running the Backend
+
+Navigate to the backend directory:
+
+cd backend
+
+Create an environment file:
+
+cp .env.example .env
+
+Update .env with appropriate values:
+
+PORT=5001
+MONGODB_URI=your_mongodb_connection_string
+JWT_SECRET=your_secure_secret
+JWT_EXPIRES_IN=7d
+
+Install dependencies and start the server:
+
+npm install
+npm start
+
+The backend will run on:
+
+http://localhost:5001
+Running the Mobile Application
+
+Open a new terminal:
+
+cd flutter_app
+flutter pub get
+
+Ensure a device or emulator is available:
+
+flutter devices
+
+Run the application:
+
+flutter run
+
+By default, the mobile app connects to:
+
+http://10.0.2.2:5001/api   (emulator)
+http://localhost:5001/api  (Web)
+
+If needed, configure the API base URL during build or update it in the code.
+
+Running the Web Application
+
+From the root directory:
+
+npm install
 npm run dev
-```
 
-**Edit a file directly in GitHub**
+This will start the web application using Vite.
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+--Important Notes
+Ensure the backend server is running before starting the mobile or web application
+Configure environment variables correctly before running the backend
+For physical devices, replace localhost with your machine’s local IP address
+Do not commit .env files or sensitive credentials
 
-**Use GitHub Codespaces**
+--Key Design Focus
+Accessibility-first design
+Clean and minimal user interface
+Practical usability in real-world scenarios
+Modular and scalable architecture
+Future Scope
+Real-time speech recognition integration
+Multi-language support
+Cloud-based conversation storage
+AI-powered conversation summaries
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
-
-## What technologies are used for this project?
-
-This project is built with:
-
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
-
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+--License
+This project is open-source and available for learning and development purposes.
