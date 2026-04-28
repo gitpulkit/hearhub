@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_lucide/flutter_lucide.dart';
 import 'package:go_router/go_router.dart';
+import '../data/tools_data.dart';
 import '../theme/app_colors.dart';
 import '../utils/navigation.dart';
 import '../widgets/mobile_layout.dart';
@@ -11,11 +12,6 @@ class GuideScreen extends StatelessWidget {
   const GuideScreen({super.key, required this.category});
 
   final String category;
-
-  static const _tools = [
-    (name: 'Live Transcribe', desc: 'Real-time speech to text for lectures and meetings.', icon: LucideIcons.mic),
-    (name: 'Otter.ai', desc: 'AI-powered note-taking for students and professionals.', icon: LucideIcons.file_text),
-  ];
 
   static const _steps = [
     'Download the app from your app store.',
@@ -43,6 +39,10 @@ class GuideScreen extends StatelessWidget {
       case 'caregiver': return 'Tools and tips to support someone you care for.';
       default: return 'Tools and tips to help you.';
     }
+  }
+
+  List<ToolItem> get _recommendedTools {
+    return getPersonalizedToolsForCategory(category);
   }
 
   @override
@@ -99,10 +99,10 @@ class GuideScreen extends StatelessWidget {
                     height: 200,
                     child: ListView.separated(
                       scrollDirection: Axis.horizontal,
-                      itemCount: _tools.length,
+                      itemCount: _recommendedTools.length,
                       separatorBuilder: (_, __) => const SizedBox(width: 16),
                       itemBuilder: (context, i) {
-                        final t = _tools[i];
+                        final tool = _recommendedTools[i];
                         return Container(
                           width: 220,
                           padding: const EdgeInsets.all(20),
@@ -122,11 +122,11 @@ class GuideScreen extends StatelessWidget {
                                   color: AppColors.accent,
                                   shape: BoxShape.circle,
                                 ),
-                                child: Icon(t.icon, size: 24, color: AppColors.foreground),
+                                child: Icon(tool.icon, size: 24, color: AppColors.foreground),
                               ),
                               const SizedBox(height: 12),
                               Text(
-                                t.name,
+                                tool.name,
                                 maxLines: 1,
                                 overflow: TextOverflow.ellipsis,
                                 style: const TextStyle(
@@ -137,13 +137,23 @@ class GuideScreen extends StatelessWidget {
                               ),
                               const SizedBox(height: 4),
                               Text(
-                                t.desc,
+                                tool.tagline,
                                 maxLines: 2,
                                 overflow: TextOverflow.ellipsis,
                                 style: const TextStyle(
                                   fontSize: 12,
                                   height: 1.3,
                                   color: AppColors.mutedForeground,
+                                ),
+                              ),
+                              const SizedBox(height: 4),
+                              Text(
+                                categoryLabels[tool.category] ?? tool.category,
+                                maxLines: 1,
+                                overflow: TextOverflow.ellipsis,
+                                style: const TextStyle(
+                                  fontSize: 11,
+                                  color: AppColors.primary,
                                 ),
                               ),
                             ],
