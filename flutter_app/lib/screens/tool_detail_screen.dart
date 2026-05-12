@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_lucide/flutter_lucide.dart';
+import 'package:url_launcher/url_launcher.dart';
 import '../theme/app_colors.dart';
 import '../utils/navigation.dart';
 import '../widgets/mobile_layout.dart';
@@ -26,6 +27,8 @@ class ToolDetailScreen extends StatelessWidget {
       ],
       contexts: ['Cafés & Restaurants', 'At Home', 'Public spaces'],
       imageAsset: 'assets/images/sound_amplifier.png',
+      tutorialYoutubeUrl:
+          'https://www.youtube.com/watch?v=6Fknku1knmc&t=2s',
     ),
     'hearing-test-pro': _ToolDetail(
       name: 'Hearing Test Pro',
@@ -74,6 +77,7 @@ class ToolDetailScreen extends StatelessWidget {
       ],
       contexts: ['Classrooms', 'Meetings', 'Conferences'],
       imageAsset: 'assets/images/live_transcribe.png',
+      tutorialYoutubeUrl: 'https://www.youtube.com/watch?v=EzDrN1JA5iA',
     ),
     'otter-ai': _ToolDetail(
       name: 'Otter.ai',
@@ -90,6 +94,7 @@ class ToolDetailScreen extends StatelessWidget {
       ],
       contexts: ['Classrooms', 'Work meetings', 'Interviews'],
       imageAsset: 'assets/images/otter_ai.png',
+      tutorialYoutubeUrl: 'https://www.youtube.com/watch?v=SyqipCxv0EY',
     ),
     'caption-call': _ToolDetail(
       name: 'CaptionCall',
@@ -122,6 +127,7 @@ class ToolDetailScreen extends StatelessWidget {
       ],
       contexts: ['Restaurants', 'Meetings', 'Classrooms'],
       imageAsset: 'assets/images/roger_pen.png',
+      tutorialYoutubeUrl: 'https://www.youtube.com/watch?v=KOJU02GfHIU',
     ),
     'alertmaster': _ToolDetail(
       name: 'AlertMaster',
@@ -170,6 +176,42 @@ class ToolDetailScreen extends StatelessWidget {
       ],
       contexts: ['Open offices', 'Remote work', 'Team meetings'],
       imageAsset: 'assets/images/workplace_guide.png',
+    ),
+    'wulira-app': _ToolDetail(
+      name: 'Wulira App',
+      tagline:
+          'Mobile audiometry for early hearing-loss screening and awareness.',
+      icon: LucideIcons.ear,
+      helpsWith: [
+        'Run quick hearing screening from a mobile device.',
+        'Support early awareness in schools and community settings.',
+      ],
+      steps: [
+        'Download Wulira from your app store.',
+        'Follow the in-app prompts to complete a screening session.',
+        'Review the summary and follow up with a professional if needed.',
+      ],
+      contexts: ['Classrooms', 'Meetings', 'At Home'],
+      imageAsset: 'assets/images/hearing_test_pro.png',
+      tutorialYoutubeUrl: 'https://www.youtube.com/watch?v=AKkJlfOPeAw',
+    ),
+    'avaz-aac-app': _ToolDetail(
+      name: 'AVAZ AAC App',
+      tagline:
+          'Picture-based communication support for children and caregivers.',
+      icon: LucideIcons.message_square_text,
+      helpsWith: [
+        'Build picture-based messages for daily communication.',
+        'Support children and caregivers with AAC routines.',
+      ],
+      steps: [
+        'Install AVAZ AAC and set up vocabulary boards for the user.',
+        'Tap symbols to create phrases; use voice output when helpful.',
+        'Practice together in familiar home or classroom routines.',
+      ],
+      contexts: ['At Home', 'Classrooms', 'With caregivers'],
+      imageAsset: 'assets/images/live_transcribe.png',
+      tutorialYoutubeUrl: 'https://www.youtube.com/watch?v=XH_bqn10Xkk',
     ),
   };
 
@@ -343,9 +385,33 @@ class ToolDetailScreen extends StatelessWidget {
 
                 const SizedBox(height: 24),
 
-                // Primary CTA
+                if (detail.tutorialYoutubeUrl != null) ...[
+                  HearHubButton(
+                    onPressed: () => _openYoutubeTutorial(
+                      context,
+                      detail.tutorialYoutubeUrl!,
+                    ),
+                    child: const Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Icon(
+                          LucideIcons.circle_play,
+                          size: 22,
+                          color: AppColors.primaryForeground,
+                        ),
+                        SizedBox(width: 10),
+                        Text('Watch tutorial'),
+                      ],
+                    ),
+                  ),
+                  const SizedBox(height: 12),
+                ],
                 HearHubButton(
-                  onPressed: () {},
+                  variant: detail.tutorialYoutubeUrl != null
+                      ? HearHubButtonVariant.secondary
+                      : HearHubButtonVariant.primary,
+                  onPressed: null,
                   child: const Text('Start using tool'),
                 ),
 
@@ -450,6 +516,7 @@ class _ToolDetail {
     required this.steps,
     required this.contexts,
     required this.imageAsset,
+    this.tutorialYoutubeUrl,
   });
 
   final String name;
@@ -459,5 +526,29 @@ class _ToolDetail {
   final List<String> steps;
   final List<String> contexts;
   final String imageAsset;
+
+  /// Full `https://www.youtube.com/watch?v=…` or `https://youtu.be/…` link.
+  /// When non-null, a **Watch tutorial** button opens it in the browser / YouTube app.
+  final String? tutorialYoutubeUrl;
+}
+
+Future<void> _openYoutubeTutorial(BuildContext context, String url) async {
+  final uri = Uri.tryParse(url.trim());
+  if (uri == null ||
+      (uri.scheme != 'https' && uri.scheme != 'http') ||
+      !uri.hasAuthority) {
+    if (!context.mounted) return;
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(content: Text('Invalid tutorial link.')),
+    );
+    return;
+  }
+  final ok = await launchUrl(uri, mode: LaunchMode.externalApplication);
+  if (!context.mounted) return;
+  if (!ok) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(content: Text('Could not open the video.')),
+    );
+  }
 }
 

@@ -103,15 +103,20 @@ class GuideScreen extends StatelessWidget {
                       separatorBuilder: (_, __) => const SizedBox(width: 16),
                       itemBuilder: (context, i) {
                         final tool = _recommendedTools[i];
-                        return Container(
-                          width: 220,
-                          padding: const EdgeInsets.all(20),
-                          decoration: BoxDecoration(
-                            color: AppColors.card,
+                        return Material(
+                          color: Colors.transparent,
+                          child: InkWell(
+                            onTap: () => context.push('/tool/${tool.id}'),
                             borderRadius: BorderRadius.circular(24),
-                            border: Border.all(color: AppColors.border),
-                          ),
-                          child: Column(
+                            child: Container(
+                              width: 220,
+                              padding: const EdgeInsets.all(20),
+                              decoration: BoxDecoration(
+                                color: AppColors.card,
+                                borderRadius: BorderRadius.circular(24),
+                                border: Border.all(color: AppColors.border),
+                              ),
+                              child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             mainAxisSize: MainAxisSize.min,
                             children: [
@@ -157,6 +162,8 @@ class GuideScreen extends StatelessWidget {
                                 ),
                               ),
                             ],
+                          ),
+                            ),
                           ),
                         );
                       },
