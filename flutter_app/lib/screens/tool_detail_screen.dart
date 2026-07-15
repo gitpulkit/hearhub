@@ -1,6 +1,8 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_lucide/flutter_lucide.dart';
 import 'package:url_launcher/url_launcher.dart';
+import '../l10n/app_localizations.dart';
 import '../theme/app_colors.dart';
 import '../utils/navigation.dart';
 import '../widgets/mobile_layout.dart';
@@ -29,6 +31,8 @@ class ToolDetailScreen extends StatelessWidget {
       imageAsset: 'assets/images/sound_amplifier.png',
       tutorialYoutubeUrl:
           'https://www.youtube.com/watch?v=6Fknku1knmc&t=2s',
+      androidStoreUrl:
+          'https://play.google.com/store/apps/details?id=com.google.android.accessibility.soundamplifier',
     ),
     'hearing-test-pro': _ToolDetail(
       name: 'Hearing Test Pro',
@@ -45,6 +49,8 @@ class ToolDetailScreen extends StatelessWidget {
       ],
       contexts: ['Doctor visits', 'At home', 'Before appointments'],
       imageAsset: 'assets/images/hearing_test_pro.png',
+      androidStoreUrl:
+          'https://play.google.com/store/apps/details?id=mobile.eaudiologia.pro',
     ),
     'noise-reducer': _ToolDetail(
       name: 'Noise Reducer',
@@ -61,6 +67,11 @@ class ToolDetailScreen extends StatelessWidget {
       ],
       contexts: ['Work meetings', 'Commuting', 'Open offices'],
       imageAsset: 'assets/images/noise_reducer.png',
+      // No single official app — open store search results.
+      androidStoreUrl:
+          'https://play.google.com/store/search?q=noise%20reducer%20hearing&c=apps',
+      iosStoreUrl:
+          'https://apps.apple.com/us/search?term=noise%20reducer%20hearing',
     ),
     'live-transcribe': _ToolDetail(
       name: 'Live Transcribe',
@@ -78,6 +89,8 @@ class ToolDetailScreen extends StatelessWidget {
       contexts: ['Classrooms', 'Meetings', 'Conferences'],
       imageAsset: 'assets/images/live_transcribe.png',
       tutorialYoutubeUrl: 'https://www.youtube.com/watch?v=EzDrN1JA5iA',
+      androidStoreUrl:
+          'https://play.google.com/store/apps/details?id=com.google.audio.hearing.visualization.accessibility.scribe',
     ),
     'otter-ai': _ToolDetail(
       name: 'Otter.ai',
@@ -95,6 +108,10 @@ class ToolDetailScreen extends StatelessWidget {
       contexts: ['Classrooms', 'Work meetings', 'Interviews'],
       imageAsset: 'assets/images/otter_ai.png',
       tutorialYoutubeUrl: 'https://www.youtube.com/watch?v=SyqipCxv0EY',
+      androidStoreUrl:
+          'https://play.google.com/store/apps/details?id=com.aisense.otter',
+      iosStoreUrl:
+          'https://apps.apple.com/us/app/otter-transcribe-voice-notes/id1276437113',
     ),
     'caption-call': _ToolDetail(
       name: 'CaptionCall',
@@ -111,6 +128,9 @@ class ToolDetailScreen extends StatelessWidget {
       ],
       contexts: ['At Home', 'Doctor calls', 'Customer service'],
       imageAsset: 'assets/images/caption_call.png',
+      androidStoreUrl:
+          'https://play.google.com/store/apps/details?id=com.machinegenius.olelo',
+      iosStoreUrl: 'https://apps.apple.com/us/app/captioncall/id1529823668',
     ),
     'roger-pen': _ToolDetail(
       name: 'Roger Pen',
@@ -128,6 +148,7 @@ class ToolDetailScreen extends StatelessWidget {
       contexts: ['Restaurants', 'Meetings', 'Classrooms'],
       imageAsset: 'assets/images/roger_pen.png',
       tutorialYoutubeUrl: 'https://www.youtube.com/watch?v=KOJU02GfHIU',
+      externalUrl: 'https://www.phonak.com/en-us/hearing-devices/microphones/roger-pen',
     ),
     'alertmaster': _ToolDetail(
       name: 'AlertMaster',
@@ -144,6 +165,7 @@ class ToolDetailScreen extends StatelessWidget {
       ],
       contexts: ['At Home', 'Bedroom', 'Living room'],
       imageAsset: 'assets/images/alertmaster.png',
+      externalUrl: 'https://www.harriscomms.com/alertmaster.html',
     ),
     'hearing-loop-guide': _ToolDetail(
       name: 'Hearing Loop Guide',
@@ -160,6 +182,7 @@ class ToolDetailScreen extends StatelessWidget {
       ],
       contexts: ['Restaurants', 'Cinemas', 'Classrooms', 'Places of worship'],
       imageAsset: 'assets/images/hearing_loop_guide.png',
+      externalUrl: 'https://www.hearingloss.org/hearing-help/technology/hat/hearing-loop-systems/',
     ),
     'workplace-guide': _ToolDetail(
       name: 'Workplace Accommodations',
@@ -176,6 +199,8 @@ class ToolDetailScreen extends StatelessWidget {
       ],
       contexts: ['Open offices', 'Remote work', 'Team meetings'],
       imageAsset: 'assets/images/workplace_guide.png',
+      externalUrl:
+          'https://www.eeoc.gov/laws/guidance/deafness-and-hearing-impairments-workplace-and-ada',
     ),
     'wulira-app': _ToolDetail(
       name: 'Wulira App',
@@ -194,6 +219,9 @@ class ToolDetailScreen extends StatelessWidget {
       contexts: ['Classrooms', 'Meetings', 'At Home'],
       imageAsset: 'assets/images/hearing_test_pro.png',
       tutorialYoutubeUrl: 'https://www.youtube.com/watch?v=AKkJlfOPeAw',
+      androidStoreUrl:
+          'https://play.google.com/store/apps/details?id=com.josoft.jotechman.wuliraapp',
+      externalUrl: 'https://wuliraapp.com/',
     ),
     'avaz-aac-app': _ToolDetail(
       name: 'AVAZ AAC App',
@@ -212,11 +240,56 @@ class ToolDetailScreen extends StatelessWidget {
       contexts: ['At Home', 'Classrooms', 'With caregivers'],
       imageAsset: 'assets/images/live_transcribe.png',
       tutorialYoutubeUrl: 'https://www.youtube.com/watch?v=XH_bqn10Xkk',
+      androidStoreUrl:
+          'https://play.google.com/store/apps/details?id=com.avazapp.international.lite',
+      iosStoreUrl: 'https://apps.apple.com/us/app/avaz-aac/id909574843',
+    ),
+    'hearwho-app': _ToolDetail(
+      name: 'HearWHO App',
+      tagline:
+          'WHO hearing screening app to support early hearing intervention.',
+      icon: LucideIcons.shield_check,
+      helpsWith: [
+        'Screen hearing with a quick digits-in-noise check.',
+        'Track results over time and know when to seek help.',
+      ],
+      steps: [
+        'Download hearWHO from your app store.',
+        'Wear headphones and follow the on-screen number prompts.',
+        'Review your score and retest regularly.',
+      ],
+      contexts: ['At Home', 'Classrooms', 'Community screening'],
+      imageAsset: 'assets/images/hearing_test_pro.png',
+      androidStoreUrl:
+          'https://play.google.com/store/apps/details?id=com.hearxgroup.hearwho',
+      iosStoreUrl:
+          'https://apps.apple.com/us/app/hearwho-check-your-hearing/id1449966543',
+    ),
+    'envision-app': _ToolDetail(
+      name: 'Envision App',
+      tagline:
+          'Uses OCR to read text aloud and describe surroundings for easier access.',
+      icon: LucideIcons.scan_text,
+      helpsWith: [
+        'Read printed text and documents out loud.',
+        'Get spoken descriptions of people and surroundings.',
+      ],
+      steps: [
+        'Download Envision from your app store.',
+        'Point your camera at text or a scene.',
+        'Listen as the app reads or describes what it sees.',
+      ],
+      contexts: ['Classrooms', 'At Home', 'Public spaces'],
+      imageAsset: 'assets/images/live_transcribe.png',
+      androidStoreUrl:
+          'https://play.google.com/store/apps/details?id=com.letsenvision.envisionai',
+      iosStoreUrl: 'https://apps.apple.com/us/app/envision-ai/id1268632314',
     ),
   };
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     final detail = _tools[toolId];
 
     // Unknown toolId — show a graceful not-found state
@@ -231,39 +304,39 @@ class ToolDetailScreen extends StatelessWidget {
                 Container(
                   width: 72,
                   height: 72,
-                  decoration: const BoxDecoration(
-                    color: AppColors.secondary,
+                  decoration: BoxDecoration(
+                    color: AppColors.secondary(context),
                     shape: BoxShape.circle,
                   ),
-                  child: const Icon(LucideIcons.search_x,
-                      size: 32, color: AppColors.primary),
+                  child: Icon(LucideIcons.search_x,
+                      size: 32, color: AppColors.primary(context)),
                 ),
                 const SizedBox(height: 20),
-                const Text(
-                  'Tool not found',
+                Text(
+                  l10n.toolNotFound,
                   style: TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.bold,
-                    color: AppColors.foreground,
+                    color: AppColors.foreground(context),
                   ),
                 ),
                 const SizedBox(height: 8),
                 Text(
-                  '"$toolId" is not in our library yet.',
+                  l10n.toolNotInLibrary(toolId),
                   textAlign: TextAlign.center,
-                  style: const TextStyle(
+                  style: TextStyle(
                     fontSize: 14,
-                    color: AppColors.mutedForeground,
+                    color: AppColors.mutedForeground(context),
                   ),
                 ),
                 const SizedBox(height: 32),
                 TextButton.icon(
                   onPressed: () => context.popOrGo('/tools'),
-                  icon: const Icon(LucideIcons.arrow_left,
-                      size: 16, color: AppColors.primary),
-                  label: const Text(
-                    'Browse all tools',
-                    style: TextStyle(color: AppColors.primary),
+                  icon: Icon(LucideIcons.arrow_left,
+                      size: 16, color: AppColors.primary(context)),
+                  label: Text(
+                    l10n.browseAllTools,
+                    style: TextStyle(color: AppColors.primary(context)),
                   ),
                 ),
               ],
@@ -286,14 +359,14 @@ class ToolDetailScreen extends StatelessWidget {
                   children: [
                     IconButton(
                       onPressed: () => context.popOrGo('/tools'),
-                      icon: const Icon(LucideIcons.chevron_left, color: AppColors.foreground),
+                      icon: Icon(LucideIcons.chevron_left, color: AppColors.foreground(context)),
                     ),
                     const SizedBox(width: 8),
                     Text(
-                      'Tool Details',
+                      l10n.toolDetails,
                       style: Theme.of(context).textTheme.titleMedium?.copyWith(
                             fontWeight: FontWeight.w600,
-                            color: AppColors.foreground,
+                            color: AppColors.foreground(context),
                           ),
                     ),
                   ],
@@ -307,18 +380,18 @@ class ToolDetailScreen extends StatelessWidget {
                       Container(
                         width: 64,
                         height: 64,
-                        decoration: const BoxDecoration(
-                          color: AppColors.secondary,
+                        decoration: BoxDecoration(
+                          color: AppColors.secondary(context),
                           shape: BoxShape.circle,
                         ),
-                        child: Icon(detail.icon, size: 32, color: AppColors.primary),
+                        child: Icon(detail.icon, size: 32, color: AppColors.primary(context)),
                       ),
                       const SizedBox(height: 16),
                       Text(
                         detail.name,
                         style: Theme.of(context).textTheme.headlineSmall?.copyWith(
                               fontWeight: FontWeight.bold,
-                              color: AppColors.foreground,
+                              color: AppColors.foreground(context),
                             ),
                         textAlign: TextAlign.center,
                       ),
@@ -326,7 +399,7 @@ class ToolDetailScreen extends StatelessWidget {
                       Text(
                         detail.tagline,
                         style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                              color: AppColors.mutedForeground,
+                              color: AppColors.mutedForeground(context),
                             ),
                         textAlign: TextAlign.center,
                       ),
@@ -352,10 +425,10 @@ class ToolDetailScreen extends StatelessWidget {
 
                 // What this tool helps with
                 Text(
-                  'What this tool helps with',
+                  l10n.whatThisToolHelpsWith,
                   style: Theme.of(context).textTheme.titleMedium?.copyWith(
                         fontWeight: FontWeight.w600,
-                        color: AppColors.foreground,
+                        color: AppColors.foreground(context),
                       ),
                 ),
                 const SizedBox(height: 12),
@@ -367,15 +440,15 @@ class ToolDetailScreen extends StatelessWidget {
                         (text) => Container(
                           padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
                           decoration: BoxDecoration(
-                            color: AppColors.card,
+                            color: AppColors.card(context),
                             borderRadius: BorderRadius.circular(999),
-                            border: Border.all(color: AppColors.border),
+                            border: Border.all(color: AppColors.border(context)),
                           ),
                           child: Text(
                             text,
-                            style: const TextStyle(
+                            style: TextStyle(
                               fontSize: 12,
-                              color: AppColors.foreground,
+                              color: AppColors.foreground(context),
                             ),
                           ),
                         ),
@@ -391,17 +464,17 @@ class ToolDetailScreen extends StatelessWidget {
                       context,
                       detail.tutorialYoutubeUrl!,
                     ),
-                    child: const Row(
+                    child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         Icon(
                           LucideIcons.circle_play,
                           size: 22,
-                          color: AppColors.primaryForeground,
+                          color: AppColors.primaryForeground(context),
                         ),
                         SizedBox(width: 10),
-                        Text('Watch tutorial'),
+                        Text(l10n.watchTutorial),
                       ],
                     ),
                   ),
@@ -411,18 +484,20 @@ class ToolDetailScreen extends StatelessWidget {
                   variant: detail.tutorialYoutubeUrl != null
                       ? HearHubButtonVariant.secondary
                       : HearHubButtonVariant.primary,
-                  onPressed: null,
-                  child: const Text('Start using tool'),
+                  onPressed: detail.hasLaunchUrl
+                      ? () => _openToolStoreOrPage(context, detail)
+                      : null,
+                  child: Text(l10n.startUsingTool),
                 ),
 
                 const SizedBox(height: 32),
 
                 // How to start section
                 Text(
-                  'How to start in 2 minutes',
+                  l10n.howToStartIn2Minutes,
                   style: Theme.of(context).textTheme.titleMedium?.copyWith(
                         fontWeight: FontWeight.w600,
-                        color: AppColors.foreground,
+                        color: AppColors.foreground(context),
                       ),
                 ),
                 const SizedBox(height: 16),
@@ -438,17 +513,17 @@ class ToolDetailScreen extends StatelessWidget {
                           Container(
                             width: 28,
                             height: 28,
-                            decoration: const BoxDecoration(
-                              color: AppColors.primary,
+                            decoration: BoxDecoration(
+                              color: AppColors.primary(context),
                               shape: BoxShape.circle,
                             ),
                             alignment: Alignment.center,
                             child: Text(
                               '$index',
-                              style: const TextStyle(
+                              style: TextStyle(
                                 fontSize: 14,
                                 fontWeight: FontWeight.bold,
-                                color: AppColors.primaryForeground,
+                                color: AppColors.primaryForeground(context),
                               ),
                             ),
                           ),
@@ -456,9 +531,9 @@ class ToolDetailScreen extends StatelessWidget {
                           Expanded(
                             child: Text(
                               text,
-                              style: const TextStyle(
+                              style: TextStyle(
                                 fontSize: 14,
-                                color: AppColors.foreground,
+                                color: AppColors.foreground(context),
                               ),
                             ),
                           ),
@@ -481,14 +556,14 @@ class ToolDetailScreen extends StatelessWidget {
                           (c) => Container(
                             padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
                             decoration: BoxDecoration(
-                              color: AppColors.secondary,
+                              color: AppColors.secondary(context),
                               borderRadius: BorderRadius.circular(999),
                             ),
                             child: Text(
                               c,
-                              style: const TextStyle(
+                              style: TextStyle(
                                 fontSize: 12,
-                                color: AppColors.primary,
+                                color: AppColors.primary(context),
                               ),
                             ),
                           ),
@@ -517,6 +592,9 @@ class _ToolDetail {
     required this.contexts,
     required this.imageAsset,
     this.tutorialYoutubeUrl,
+    this.androidStoreUrl,
+    this.iosStoreUrl,
+    this.externalUrl,
   });
 
   final String name;
@@ -530,16 +608,73 @@ class _ToolDetail {
   /// Full `https://www.youtube.com/watch?v=…` or `https://youtu.be/…` link.
   /// When non-null, a **Watch tutorial** button opens it in the browser / YouTube app.
   final String? tutorialYoutubeUrl;
+
+  /// Google Play Store listing (or search) URL.
+  final String? androidStoreUrl;
+
+  /// Apple App Store listing (or search) URL.
+  final String? iosStoreUrl;
+
+  /// Fallback product / guide page when there is no mobile store listing.
+  final String? externalUrl;
+
+  bool get hasLaunchUrl =>
+      androidStoreUrl != null || iosStoreUrl != null || externalUrl != null;
+
+  /// Picks App Store on iOS, Play Store on Android/other, then any fallback.
+  String? get preferredLaunchUrl {
+    final preferIos = defaultTargetPlatform == TargetPlatform.iOS;
+    if (preferIos) {
+      return iosStoreUrl ?? androidStoreUrl ?? externalUrl;
+    }
+    return androidStoreUrl ?? iosStoreUrl ?? externalUrl;
+  }
 }
 
 Future<void> _openYoutubeTutorial(BuildContext context, String url) async {
+  final l10n = AppLocalizations.of(context);
+  await _launchExternalUrl(
+    context,
+    url,
+    invalidMessage: l10n.invalidTutorialLink,
+    failMessage: l10n.couldNotOpenVideo,
+  );
+}
+
+Future<void> _openToolStoreOrPage(
+  BuildContext context,
+  _ToolDetail detail,
+) async {
+  final l10n = AppLocalizations.of(context);
+  final url = detail.preferredLaunchUrl;
+  if (url == null) {
+    if (!context.mounted) return;
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(content: Text(l10n.noDownloadPage)),
+    );
+    return;
+  }
+  await _launchExternalUrl(
+    context,
+    url,
+    invalidMessage: l10n.invalidStoreLink,
+    failMessage: l10n.couldNotOpenStore,
+  );
+}
+
+Future<void> _launchExternalUrl(
+  BuildContext context,
+  String url, {
+  required String invalidMessage,
+  required String failMessage,
+}) async {
   final uri = Uri.tryParse(url.trim());
   if (uri == null ||
       (uri.scheme != 'https' && uri.scheme != 'http') ||
       !uri.hasAuthority) {
     if (!context.mounted) return;
     ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(content: Text('Invalid tutorial link.')),
+      SnackBar(content: Text(invalidMessage)),
     );
     return;
   }
@@ -547,7 +682,7 @@ Future<void> _openYoutubeTutorial(BuildContext context, String url) async {
   if (!context.mounted) return;
   if (!ok) {
     ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(content: Text('Could not open the video.')),
+      SnackBar(content: Text(failMessage)),
     );
   }
 }

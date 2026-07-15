@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_lucide/flutter_lucide.dart';
 import 'package:go_router/go_router.dart';
+import '../l10n/app_localizations.dart';
 import '../theme/app_colors.dart';
 import '../utils/navigation.dart';
 import '../widgets/mobile_layout.dart';
@@ -68,8 +69,17 @@ class _ToolsScreenState extends State<ToolsScreen> {
     return tools;
   }
 
+  Map<String, String> _localizedCategories(AppLocalizations l10n) => {
+        'all': l10n.categoryAll,
+        'app': l10n.categoryApps,
+        'device': l10n.categoryDevices,
+        'guide': l10n.categoryGuides,
+      };
+
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
+    final categories = _localizedCategories(l10n);
     final filtered = _filtered;
     final meta = _activeScenario != null
         ? scenarioMeta[_activeScenario]
@@ -92,31 +102,31 @@ class _ToolsScreenState extends State<ToolsScreen> {
                         width: 40,
                         height: 40,
                         decoration: BoxDecoration(
-                          color: AppColors.secondary,
+                          color: AppColors.secondary(context),
                           shape: BoxShape.circle,
                         ),
-                        child: const Icon(
+                        child: Icon(
                           LucideIcons.arrow_left,
                           size: 20,
-                          color: AppColors.primary,
+                          color: AppColors.primary(context),
                         ),
                       ),
                     ),
                     const SizedBox(width: 16),
-                    const Text(
-                      'All Tools',
+                    Text(
+                      l10n.allTools,
                       style: TextStyle(
                         fontSize: 22,
                         fontWeight: FontWeight.w800,
-                        color: AppColors.foreground,
+                        color: AppColors.foreground(context),
                       ),
                     ),
                     const Spacer(),
                     Text(
-                      '${filtered.length} tools',
-                      style: const TextStyle(
+                      l10n.toolsCount(filtered.length),
+                      style: TextStyle(
                         fontSize: 13,
-                        color: AppColors.mutedForeground,
+                        color: AppColors.mutedForeground(context),
                       ),
                     ),
                   ],
@@ -129,36 +139,36 @@ class _ToolsScreenState extends State<ToolsScreen> {
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 24),
                 child: Material(
-                  color: AppColors.card,
+                  color: AppColors.card(context),
                   borderRadius: BorderRadius.circular(32),
                   elevation: 2,
                   shadowColor: Colors.black.withValues(alpha: 0.05),
                   child: TextField(
                     controller: _searchController,
-                    style: const TextStyle(
+                    style: TextStyle(
                       fontSize: 14,
-                      color: AppColors.foreground,
+                      color: AppColors.foreground(context),
                     ),
                     decoration: InputDecoration(
-                      hintText: 'Search tools...',
-                      hintStyle: const TextStyle(
+                      hintText: l10n.searchToolsHint,
+                      hintStyle: TextStyle(
                         fontSize: 14,
-                        color: AppColors.mutedForeground,
+                        color: AppColors.mutedForeground(context),
                       ),
-                      prefixIcon: const Padding(
+                      prefixIcon: Padding(
                         padding: EdgeInsets.only(left: 16, right: 8),
                         child: Icon(
                           LucideIcons.search,
                           size: 18,
-                          color: AppColors.mutedForeground,
+                          color: AppColors.mutedForeground(context),
                         ),
                       ),
                       prefixIconConstraints:
                           const BoxConstraints(minWidth: 0, minHeight: 0),
                       suffixIcon: _query.isNotEmpty
                           ? IconButton(
-                              icon: const Icon(LucideIcons.x,
-                                  size: 16, color: AppColors.mutedForeground),
+                              icon: Icon(LucideIcons.x,
+                                  size: 16, color: AppColors.mutedForeground(context)),
                               onPressed: () {
                                 _searchController.clear();
                                 setState(() => _query = '');
@@ -170,7 +180,7 @@ class _ToolsScreenState extends State<ToolsScreen> {
                         borderSide: BorderSide.none,
                       ),
                       filled: true,
-                      fillColor: AppColors.card,
+                      fillColor: AppColors.card(context),
                       contentPadding: const EdgeInsets.symmetric(
                           horizontal: 16, vertical: 14),
                     ),
@@ -188,29 +198,29 @@ class _ToolsScreenState extends State<ToolsScreen> {
                     padding: const EdgeInsets.symmetric(
                         horizontal: 14, vertical: 10),
                     decoration: BoxDecoration(
-                      color: AppColors.secondary,
+                      color: AppColors.secondary(context),
                       borderRadius: BorderRadius.circular(16),
                     ),
                     child: Row(
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         Icon(meta.icon,
-                            size: 16, color: AppColors.primary),
+                            size: 16, color: AppColors.primary(context)),
                         const SizedBox(width: 8),
                         Text(
                           'Showing tools for ${meta.label}',
-                          style: const TextStyle(
+                          style: TextStyle(
                             fontSize: 13,
                             fontWeight: FontWeight.w600,
-                            color: AppColors.primary,
+                            color: AppColors.primary(context),
                           ),
                         ),
                         const SizedBox(width: 10),
                         GestureDetector(
                           onTap: () =>
                               setState(() => _activeScenario = null),
-                          child: const Icon(LucideIcons.x,
-                              size: 14, color: AppColors.primary),
+                          child: Icon(LucideIcons.x,
+                              size: 14, color: AppColors.primary(context)),
                         ),
                       ],
                     ),
@@ -225,7 +235,7 @@ class _ToolsScreenState extends State<ToolsScreen> {
                 child: ListView(
                   scrollDirection: Axis.horizontal,
                   padding: const EdgeInsets.symmetric(horizontal: 24),
-                  children: categoryLabels.entries.map((entry) {
+                  children: categories.entries.map((entry) {
                     final isActive = _activeCategory == entry.key;
                     return Padding(
                       padding: const EdgeInsets.only(right: 10),
@@ -238,13 +248,13 @@ class _ToolsScreenState extends State<ToolsScreen> {
                               horizontal: 18, vertical: 10),
                           decoration: BoxDecoration(
                             color: isActive
-                                ? AppColors.primary
-                                : AppColors.card,
+                                ? AppColors.primary(context)
+                                : AppColors.card(context),
                             borderRadius: BorderRadius.circular(999),
                             border: Border.all(
                               color: isActive
-                                  ? AppColors.primary
-                                  : AppColors.border,
+                                  ? AppColors.primary(context)
+                                  : AppColors.border(context),
                             ),
                           ),
                           child: Text(
@@ -253,8 +263,8 @@ class _ToolsScreenState extends State<ToolsScreen> {
                               fontSize: 13,
                               fontWeight: FontWeight.w600,
                               color: isActive
-                                  ? AppColors.primaryForeground
-                                  : AppColors.foreground,
+                                  ? AppColors.primaryForeground(context)
+                                  : AppColors.foreground(context),
                             ),
                           ),
                         ),
@@ -319,9 +329,9 @@ class _ToolCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final iconBg =
-        tool.isSecondaryIcon ? AppColors.secondary : AppColors.accent;
+        tool.isSecondaryIcon ? AppColors.secondary(context) : AppColors.accent(context);
     final iconColor =
-        tool.isSecondaryIcon ? AppColors.primary : AppColors.foreground;
+        tool.isSecondaryIcon ? AppColors.primary(context) : AppColors.foreground(context);
 
     return GestureDetector(
       onTap: onTap,
@@ -329,10 +339,10 @@ class _ToolCard extends StatelessWidget {
         duration: const Duration(milliseconds: 150),
         padding: const EdgeInsets.all(16),
         decoration: BoxDecoration(
-          color: AppColors.card,
+          color: AppColors.card(context),
           borderRadius: BorderRadius.circular(20),
           border: Border.all(
-            color: isHighlighted ? AppColors.primary : AppColors.border,
+            color: isHighlighted ? AppColors.primary(context) : AppColors.border(context),
             width: isHighlighted ? 1.5 : 1,
           ),
           boxShadow: [
@@ -367,10 +377,10 @@ class _ToolCard extends StatelessWidget {
                       Expanded(
                         child: Text(
                           tool.name,
-                          style: const TextStyle(
+                          style: TextStyle(
                             fontSize: 15,
                             fontWeight: FontWeight.w700,
-                            color: AppColors.foreground,
+                            color: AppColors.foreground(context),
                           ),
                         ),
                       ),
@@ -380,9 +390,9 @@ class _ToolCard extends StatelessWidget {
                   const SizedBox(height: 4),
                   Text(
                     tool.tagline,
-                    style: const TextStyle(
+                    style: TextStyle(
                       fontSize: 12,
-                      color: AppColors.mutedForeground,
+                      color: AppColors.mutedForeground(context),
                       height: 1.4,
                     ),
                   ),
@@ -393,10 +403,10 @@ class _ToolCard extends StatelessWidget {
             const SizedBox(width: 10),
 
             // Arrow
-            const Icon(
+            Icon(
               LucideIcons.chevron_right,
               size: 18,
-              color: AppColors.mutedForeground,
+              color: AppColors.mutedForeground(context),
             ),
           ],
         ),
@@ -413,20 +423,27 @@ class _CategoryBadge extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final label = categoryLabels[category] ?? category;
+    final l10n = AppLocalizations.of(context);
+    final labels = {
+      'all': l10n.categoryAll,
+      'app': l10n.categoryApps,
+      'device': l10n.categoryDevices,
+      'guide': l10n.categoryGuides,
+    };
+    final label = labels[category] ?? category;
     final isDevice = category == 'device';
     final isGuide = category == 'guide';
 
     final bg = isDevice
-        ? AppColors.accent
+        ? AppColors.accent(context)
         : isGuide
             ? const Color(0xFFE8F4F0)
-            : AppColors.secondary;
+            : AppColors.secondary(context);
     final fg = isDevice
-        ? AppColors.foreground
+        ? AppColors.foreground(context)
         : isGuide
             ? const Color(0xFF3A8A6A)
-            : AppColors.primary;
+            : AppColors.primary(context);
 
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
@@ -464,12 +481,12 @@ class _EmptyState extends StatelessWidget {
             Container(
               width: 72,
               height: 72,
-              decoration: const BoxDecoration(
-                color: AppColors.secondary,
+              decoration: BoxDecoration(
+                color: AppColors.secondary(context),
                 shape: BoxShape.circle,
               ),
-              child: const Icon(LucideIcons.search_x,
-                  size: 32, color: AppColors.primary),
+              child: Icon(LucideIcons.search_x,
+                  size: 32, color: AppColors.primary(context)),
             ),
             const SizedBox(height: 20),
             Text(
@@ -477,19 +494,19 @@ class _EmptyState extends StatelessWidget {
                   ? 'No tools match "$query"'
                   : 'No tools in this category',
               textAlign: TextAlign.center,
-              style: const TextStyle(
+              style: TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.w600,
-                color: AppColors.foreground,
+                color: AppColors.foreground(context),
               ),
             ),
             const SizedBox(height: 8),
-            const Text(
+            Text(
               'Try a different search or category.',
               textAlign: TextAlign.center,
               style: TextStyle(
                 fontSize: 13,
-                color: AppColors.mutedForeground,
+                color: AppColors.mutedForeground(context),
               ),
             ),
           ],

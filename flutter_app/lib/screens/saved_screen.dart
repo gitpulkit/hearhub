@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_lucide/flutter_lucide.dart';
+import '../l10n/app_localizations.dart';
 import '../theme/app_colors.dart';
 import '../widgets/mobile_layout.dart';
 import '../widgets/bottom_nav.dart';
@@ -57,21 +58,21 @@ class _SavedScreenState extends State<SavedScreen> {
         child: Container(
           padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
           decoration: BoxDecoration(
-            color: active ? AppColors.primary : AppColors.card,
+            color: active ? AppColors.primary(context) : AppColors.card(context),
             borderRadius: BorderRadius.circular(999),
           ),
           constraints: const BoxConstraints(minHeight: 40),
           alignment: Alignment.center,
           child: Text(
             text,
-            style: TextStyle(fontSize: 14, color: active ? AppColors.primaryForeground : AppColors.foreground, fontWeight: FontWeight.w600),
+            style: TextStyle(fontSize: 14, color: active ? AppColors.primaryForeground(context) : AppColors.foreground(context), fontWeight: FontWeight.w600),
           ),
         ),
       );
 
   Widget _savedCard(BuildContext context, String tag, String title, String desc, String cta) {
     return Container(
-      decoration: BoxDecoration(color: AppColors.card, borderRadius: BorderRadius.circular(18), boxShadow: [
+      decoration: BoxDecoration(color: AppColors.card(context), borderRadius: BorderRadius.circular(18), boxShadow: [
         BoxShadow(color: Colors.black.withValues(alpha: 0.03), blurRadius: 8, offset: const Offset(0, 4)),
       ]),
       padding: const EdgeInsets.all(18),
@@ -81,14 +82,14 @@ class _SavedScreenState extends State<SavedScreen> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Container(padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 6), decoration: BoxDecoration(color: AppColors.secondary, borderRadius: BorderRadius.circular(8)), child: Text(tag, style: const TextStyle(fontSize: 12, color: AppColors.primary))),
-              IconButton(onPressed: () {}, icon: const Icon(LucideIcons.bookmark, color: AppColors.mutedForeground)),
+              Container(padding: EdgeInsets.symmetric(horizontal: 8, vertical: 6), decoration: BoxDecoration(color: AppColors.secondary(context), borderRadius: BorderRadius.circular(8)), child: Text(tag, style: TextStyle(fontSize: 12, color: AppColors.primary(context)))),
+              IconButton(onPressed: () {}, icon: Icon(LucideIcons.bookmark, color: AppColors.mutedForeground(context))),
             ],
           ),
           const SizedBox(height: 8),
-          Text(title, style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w700, color: AppColors.foreground)),
+          Text(title, style: TextStyle(fontSize: 18, fontWeight: FontWeight.w700, color: AppColors.foreground(context))),
           const SizedBox(height: 10),
-          Text(desc, style: const TextStyle(fontSize: 14, color: AppColors.mutedForeground)),
+          Text(desc, style: TextStyle(fontSize: 14, color: AppColors.mutedForeground(context))),
           const SizedBox(height: 14),
           Row(children: [
             Expanded(child: HearHubButton(onPressed: () {}, minHeight: 48, borderRadius: 16, child: Text(cta))),
@@ -112,9 +113,9 @@ class _SavedScreenState extends State<SavedScreen> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const SizedBox(height: 8),
-                  const Text('Saved Tools', style: TextStyle(fontSize: 24, fontWeight: FontWeight.w800, color: AppColors.foreground)),
+                  Text(AppLocalizations.of(context).savedTools, style: TextStyle(fontSize: 24, fontWeight: FontWeight.w800, color: AppColors.foreground(context))),
                   const SizedBox(height: 6),
-                  const Text('Your toolkit for any situation.', style: TextStyle(fontSize: 14, color: AppColors.mutedForeground)),
+                  Text('Your toolkit for any situation.', style: TextStyle(fontSize: 14, color: AppColors.mutedForeground(context))),
                   const SizedBox(height: 16),
                   SizedBox(
                     height: 56,

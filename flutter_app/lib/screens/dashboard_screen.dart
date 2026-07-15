@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_lucide/flutter_lucide.dart';
 import 'package:go_router/go_router.dart';
+import '../l10n/app_localizations.dart';
 import '../theme/app_colors.dart';
 import '../widgets/mobile_layout.dart';
 import '../widgets/bottom_nav.dart';
@@ -15,15 +16,15 @@ class DashboardScreen extends StatelessWidget {
     (id: 'noise-reducer', name: 'Noise Reducer', desc: 'Filter background noise', icon: LucideIcons.headphones),
   ];
 
-  static const _situations = [
-    (id: 'restaurant', label: 'Restaurant', icon: LucideIcons.utensils, isSecondary: true),
-    (id: 'meeting', label: 'Meeting', icon: LucideIcons.users, isSecondary: false),
-    (id: 'classroom', label: 'Classroom', icon: LucideIcons.graduation_cap, isSecondary: true),
-    (id: 'home', label: 'Home', icon: LucideIcons.house, isSecondary: false),
-  ];
-
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
+    final situations = [
+      (id: 'restaurant', label: l10n.scenarioRestaurant, icon: LucideIcons.utensils, isSecondary: true),
+      (id: 'meeting', label: l10n.scenarioMeeting, icon: LucideIcons.users, isSecondary: false),
+      (id: 'classroom', label: l10n.scenarioClassroom, icon: LucideIcons.graduation_cap, isSecondary: true),
+      (id: 'home', label: l10n.scenarioHome, icon: LucideIcons.house, isSecondary: false),
+    ];
     return MobileLayout(
       child: Stack(
         children: [
@@ -41,16 +42,16 @@ class DashboardScreen extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            'Good morning',
+                            l10n.goodMorning,
                             style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                              color: AppColors.mutedForeground,
+                              color: AppColors.mutedForeground(context),
                             ),
                           ),
                           Text(
-                            'Hello, User',
+                            l10n.helloUser,
                             style: Theme.of(context).textTheme.headlineSmall?.copyWith(
                               fontWeight: FontWeight.bold,
-                              color: AppColors.foreground,
+                              color: AppColors.foreground(context),
                             ),
                           ),
                         ],
@@ -58,48 +59,48 @@ class DashboardScreen extends StatelessWidget {
                       Container(
                         width: 48,
                         height: 48,
-                        decoration: const BoxDecoration(
-                          color: AppColors.accent,
+                        decoration: BoxDecoration(
+                          color: AppColors.accent(context),
                           shape: BoxShape.circle,
                         ),
                         alignment: Alignment.center,
-                        child: const Text(
+                        child: Text(
                           'U',
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
-                            color: AppColors.foreground,
+                            color: AppColors.foreground(context),
                           ),
                         ),
                       ),
                     ],
                   ),
-                  const SizedBox(height: 32),
+                  SizedBox(height: 32),
                   // Top Picks
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        'Top Picks',
+                        l10n.topPicks,
                         style: Theme.of(context).textTheme.titleMedium?.copyWith(
                           fontWeight: FontWeight.w600,
-                          color: AppColors.foreground,
+                          color: AppColors.foreground(context),
                         ),
                       ),
                       GestureDetector(
                         onTap: () => context.push('/tools'),
                         child: Row(
-                          children: const [
+                          children: [
                             Text(
-                              'See all',
+                              l10n.seeAll,
                               style: TextStyle(
                                 fontSize: 13,
                                 fontWeight: FontWeight.w600,
-                                color: AppColors.primary,
+                                color: AppColors.primary(context),
                               ),
                             ),
                             SizedBox(width: 2),
                             Icon(LucideIcons.chevron_right,
-                                size: 14, color: AppColors.primary),
+                                size: 14, color: AppColors.primary(context)),
                           ],
                         ),
                       ),
@@ -118,9 +119,9 @@ class DashboardScreen extends StatelessWidget {
                           width: 200,
                           padding: const EdgeInsets.all(20),
                           decoration: BoxDecoration(
-                            color: AppColors.card,
+                            color: AppColors.card(context),
                             borderRadius: BorderRadius.circular(24),
-                            border: Border.all(color: AppColors.border),
+                            border: Border.all(color: AppColors.border(context)),
                           ),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
@@ -128,27 +129,27 @@ class DashboardScreen extends StatelessWidget {
                               Container(
                                 width: 48,
                                 height: 48,
-                                decoration: const BoxDecoration(
-                                  color: AppColors.secondary,
+                                decoration: BoxDecoration(
+                                  color: AppColors.secondary(context),
                                   shape: BoxShape.circle,
                                 ),
-                                child: Icon(p.icon, size: 24, color: AppColors.primary),
+                                child: Icon(p.icon, size: 24, color: AppColors.primary(context)),
                               ),
                               const SizedBox(height: 12),
                               Text(
                                 p.name,
-                                style: const TextStyle(
+                                style: TextStyle(
                                   fontWeight: FontWeight.bold,
                                   fontSize: 14,
-                                  color: AppColors.foreground,
+                                  color: AppColors.foreground(context),
                                 ),
                               ),
                               const SizedBox(height: 4),
                               Text(
                                 p.desc,
-                                style: const TextStyle(
+                                style: TextStyle(
                                   fontSize: 12,
-                                  color: AppColors.mutedForeground,
+                                  color: AppColors.mutedForeground(context),
                                 ),
                               ),
                               const SizedBox(height: 12),
@@ -157,9 +158,9 @@ class DashboardScreen extends StatelessWidget {
                                 minHeight: 40,
                                 borderRadius: 24,
                                 isExpanded: true,
-                                child: const Text(
-                                  'Get',
-                                  style: TextStyle(
+                                child: Text(
+                                  l10n.getLabel,
+                                  style: const TextStyle(
                                     fontSize: 12,
                                     fontWeight: FontWeight.w600,
                                   ),
@@ -172,9 +173,9 @@ class DashboardScreen extends StatelessWidget {
                                 borderRadius: 24,
                                 isExpanded: true,
                                 variant: HearHubButtonVariant.secondary,
-                                child: const Text(
-                                  'Learn more',
-                                  style: TextStyle(
+                                child: Text(
+                                  l10n.learnMore,
+                                  style: const TextStyle(
                                     fontSize: 12,
                                     fontWeight: FontWeight.w600,
                                   ),
@@ -186,33 +187,33 @@ class DashboardScreen extends StatelessWidget {
                       },
                     ),
                   ),
-                  const SizedBox(height: 32),
+                  SizedBox(height: 32),
                   // Daily Situations
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        'Daily Situations',
+                        l10n.dailySituations,
                         style: Theme.of(context).textTheme.titleMedium?.copyWith(
                           fontWeight: FontWeight.w600,
-                          color: AppColors.foreground,
+                          color: AppColors.foreground(context),
                         ),
                       ),
                       GestureDetector(
                         onTap: () => context.push('/tools'),
                         child: Row(
-                          children: const [
+                          children: [
                             Text(
-                              'Browse tools',
+                              l10n.browseTools,
                               style: TextStyle(
                                 fontSize: 13,
                                 fontWeight: FontWeight.w600,
-                                color: AppColors.primary,
+                                color: AppColors.primary(context),
                               ),
                             ),
                             SizedBox(width: 2),
                             Icon(LucideIcons.chevron_right,
-                                size: 14, color: AppColors.primary),
+                                size: 14, color: AppColors.primary(context)),
                           ],
                         ),
                       ),
@@ -226,15 +227,15 @@ class DashboardScreen extends StatelessWidget {
                     mainAxisSpacing: 16,
                     crossAxisSpacing: 16,
                     mainAxisExtent: 140,
-                    children: _situations.map((s) {
+                    children: situations.map((s) {
                       return GestureDetector(
                         onTap: () => context.push('/assessment/${s.id}'),
                         child: Container(
                           padding: const EdgeInsets.all(20),
                           decoration: BoxDecoration(
-                            color: AppColors.card,
+                            color: AppColors.card(context),
                             borderRadius: BorderRadius.circular(24),
-                            border: Border.all(color: AppColors.border),
+                            border: Border.all(color: AppColors.border(context)),
                           ),
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
@@ -243,22 +244,22 @@ class DashboardScreen extends StatelessWidget {
                                 width: 48,
                                 height: 48,
                                 decoration: BoxDecoration(
-                                  color: s.isSecondary ? AppColors.secondary : AppColors.accent,
+                                  color: s.isSecondary ? AppColors.secondary(context) : AppColors.accent(context),
                                   shape: BoxShape.circle,
                                 ),
                                 child: Icon(
                                   s.icon,
                                   size: 24,
-                                  color: s.isSecondary ? AppColors.primary : AppColors.foreground,
+                                  color: s.isSecondary ? AppColors.primary(context) : AppColors.foreground(context),
                                 ),
                               ),
                               const SizedBox(height: 12),
                               Text(
                                 s.label,
-                                style: const TextStyle(
+                                style: TextStyle(
                                   fontSize: 14,
                                   fontWeight: FontWeight.w500,
-                                  color: AppColors.foreground,
+                                  color: AppColors.foreground(context),
                                 ),
                               ),
                             ],

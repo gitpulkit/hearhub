@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_lucide/flutter_lucide.dart';
+import '../l10n/app_localizations.dart';
 import '../theme/app_colors.dart';
 import '../widgets/mobile_layout.dart';
 import '../utils/navigation.dart';
@@ -67,14 +68,14 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
                 children: [
                   IconButton(
                     onPressed: () => context.popOrGo('/dashboard'),
-                    icon: const Icon(LucideIcons.chevron_left, color: AppColors.foreground),
+                    icon: Icon(LucideIcons.chevron_left, color: AppColors.foreground(context)),
                   ),
                   const SizedBox(width: 8),
                   Text(
-                    'Discover tools',
+                    AppLocalizations.of(context).discoverTools,
                     style: Theme.of(context).textTheme.titleMedium?.copyWith(
                           fontWeight: FontWeight.w600,
-                          color: AppColors.foreground,
+                          color: AppColors.foreground(context),
                         ),
                   ),
                 ],
@@ -93,13 +94,13 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
                       margin: const EdgeInsets.symmetric(vertical: 4),
                       padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
                       decoration: BoxDecoration(
-                        color: isUser ? AppColors.primary : AppColors.card,
+                        color: isUser ? AppColors.primary(context) : AppColors.card(context),
                         borderRadius: BorderRadius.circular(18),
                       ),
                       child: Text(
                         message.text,
                         style: TextStyle(
-                          color: isUser ? AppColors.primaryForeground : AppColors.foreground,
+                          color: isUser ? AppColors.primaryForeground(context) : AppColors.foreground(context),
                           fontSize: 14,
                         ),
                       ),
@@ -116,7 +117,7 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
                   Text(
                     'Tap an option to get a suggestion:',
                     style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                          color: AppColors.mutedForeground,
+                          color: AppColors.mutedForeground(context),
                         ),
                   ),
                   const SizedBox(height: 8),
@@ -165,15 +166,15 @@ class _ChoiceChipButton extends StatelessWidget {
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
         decoration: BoxDecoration(
-          color: AppColors.card,
+          color: AppColors.card(context),
           borderRadius: BorderRadius.circular(999),
-          border: Border.all(color: AppColors.border),
+          border: Border.all(color: AppColors.border(context)),
         ),
         child: Text(
           label,
-          style: const TextStyle(
+          style: TextStyle(
             fontSize: 13,
-            color: AppColors.foreground,
+            color: AppColors.foreground(context),
           ),
         ),
       ),

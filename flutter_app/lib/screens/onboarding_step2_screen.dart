@@ -65,14 +65,14 @@ class _OnboardingStep2ScreenState extends State<OnboardingStep2Screen> {
                   width: 48,
                   height: 48,
                   decoration: BoxDecoration(
-                    color: AppColors.card,
+                    color: AppColors.card(context),
                     shape: BoxShape.circle,
-                    border: Border.all(color: AppColors.border),
+                    border: Border.all(color: AppColors.border(context)),
                   ),
-                  child: const Icon(
+                  child: Icon(
                     LucideIcons.arrow_left,
                     size: 24,
-                    color: AppColors.foreground,
+                    color: AppColors.foreground(context),
                   ),
                 ),
               ),
@@ -81,19 +81,19 @@ class _OnboardingStep2ScreenState extends State<OnboardingStep2Screen> {
               // Progress bar — 50%
               ClipRRect(
                 borderRadius: BorderRadius.circular(2),
-                child: const LinearProgressIndicator(
+                child: LinearProgressIndicator(
                   value: 0.50,
-                  backgroundColor: AppColors.secondary,
-                  valueColor: AlwaysStoppedAnimation<Color>(AppColors.primary),
+                  backgroundColor: AppColors.secondary(context),
+                  valueColor: AlwaysStoppedAnimation<Color>(AppColors.primary(context)),
                   minHeight: 8,
                 ),
               ),
               const SizedBox(height: 8),
-              const Text(
+              Text(
                 'Step 2 of 4',
                 style: TextStyle(
                   fontSize: 12,
-                  color: AppColors.mutedForeground,
+                  color: AppColors.mutedForeground(context),
                 ),
               ),
               const SizedBox(height: 24),
@@ -102,14 +102,14 @@ class _OnboardingStep2ScreenState extends State<OnboardingStep2Screen> {
                 'How is your hearing?',
                 style: Theme.of(context).textTheme.headlineSmall?.copyWith(
                   fontWeight: FontWeight.bold,
-                  color: AppColors.foreground,
+                  color: AppColors.foreground(context),
                 ),
               ),
               const SizedBox(height: 8),
               Text(
                 'This helps us suggest the most useful tools.',
                 style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                  color: AppColors.mutedForeground,
+                  color: AppColors.mutedForeground(context),
                 ),
               ),
               const SizedBox(height: 24),
@@ -128,18 +128,18 @@ class _OnboardingStep2ScreenState extends State<OnboardingStep2Screen> {
                         duration: const Duration(milliseconds: 150),
                         padding: const EdgeInsets.all(16),
                         decoration: BoxDecoration(
-                          color: AppColors.card,
+                          color: AppColors.card(context),
                           borderRadius: BorderRadius.circular(24),
                           border: Border.all(
                             color: isSelected
-                                ? AppColors.primary
-                                : AppColors.border,
+                                ? AppColors.primary(context)
+                                : AppColors.border(context),
                             width: 2,
                           ),
                           boxShadow: isSelected
                               ? [
                                   BoxShadow(
-                                    color: AppColors.primary
+                                    color: AppColors.primary(context)
                                         .withValues(alpha: 0.15),
                                     blurRadius: 8,
                                     offset: const Offset(0, 2),
@@ -154,16 +154,16 @@ class _OnboardingStep2ScreenState extends State<OnboardingStep2Screen> {
                               height: 48,
                               decoration: BoxDecoration(
                                 color: l.isSecondary
-                                    ? AppColors.secondary
-                                    : AppColors.accent,
+                                    ? AppColors.secondary(context)
+                                    : AppColors.accent(context),
                                 shape: BoxShape.circle,
                               ),
                               child: Icon(
                                 l.icon,
                                 size: 24,
                                 color: l.isSecondary
-                                    ? AppColors.primary
-                                    : AppColors.foreground,
+                                    ? AppColors.primary(context)
+                                    : AppColors.foreground(context),
                               ),
                             ),
                             const SizedBox(width: 16),
@@ -173,18 +173,18 @@ class _OnboardingStep2ScreenState extends State<OnboardingStep2Screen> {
                                 children: [
                                   Text(
                                     l.label,
-                                    style: const TextStyle(
+                                    style: TextStyle(
                                       fontSize: 15,
                                       fontWeight: FontWeight.w600,
-                                      color: AppColors.foreground,
+                                      color: AppColors.foreground(context),
                                     ),
                                   ),
                                   const SizedBox(height: 2),
                                   Text(
                                     l.desc,
-                                    style: const TextStyle(
+                                    style: TextStyle(
                                       fontSize: 12,
-                                      color: AppColors.mutedForeground,
+                                      color: AppColors.mutedForeground(context),
                                     ),
                                   ),
                                 ],
@@ -197,8 +197,8 @@ class _OnboardingStep2ScreenState extends State<OnboardingStep2Screen> {
                                   : LucideIcons.circle,
                               size: 20,
                               color: isSelected
-                                  ? AppColors.primary
-                                  : AppColors.border,
+                                  ? AppColors.primary(context)
+                                  : AppColors.border(context),
                             ),
                           ],
                         ),

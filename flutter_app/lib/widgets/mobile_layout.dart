@@ -17,13 +17,13 @@ class MobileLayout extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: AppColors.background,
+      color: AppColors.background(context),
       child: Center(
         child: ConstrainedBox(
           constraints: const BoxConstraints(maxWidth: maxWidth),
           child: Container(
             width: double.infinity,
-            color: AppColors.background,
+            color: AppColors.background(context),
             child: child,
           ),
         ),

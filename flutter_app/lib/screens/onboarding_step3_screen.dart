@@ -84,14 +84,14 @@ class _OnboardingStep3ScreenState extends State<OnboardingStep3Screen> {
                   width: 48,
                   height: 48,
                   decoration: BoxDecoration(
-                    color: AppColors.card,
+                    color: AppColors.card(context),
                     shape: BoxShape.circle,
-                    border: Border.all(color: AppColors.border),
+                    border: Border.all(color: AppColors.border(context)),
                   ),
-                  child: const Icon(
+                  child: Icon(
                     LucideIcons.arrow_left,
                     size: 24,
-                    color: AppColors.foreground,
+                    color: AppColors.foreground(context),
                   ),
                 ),
               ),
@@ -100,19 +100,19 @@ class _OnboardingStep3ScreenState extends State<OnboardingStep3Screen> {
               // Progress bar — 75%
               ClipRRect(
                 borderRadius: BorderRadius.circular(2),
-                child: const LinearProgressIndicator(
+                child: LinearProgressIndicator(
                   value: 0.75,
-                  backgroundColor: AppColors.secondary,
-                  valueColor: AlwaysStoppedAnimation<Color>(AppColors.primary),
+                  backgroundColor: AppColors.secondary(context),
+                  valueColor: AlwaysStoppedAnimation<Color>(AppColors.primary(context)),
                   minHeight: 8,
                 ),
               ),
               const SizedBox(height: 8),
-              const Text(
+              Text(
                 'Step 3 of 4',
                 style: TextStyle(
                   fontSize: 12,
-                  color: AppColors.mutedForeground,
+                  color: AppColors.mutedForeground(context),
                 ),
               ),
               const SizedBox(height: 24),
@@ -121,14 +121,14 @@ class _OnboardingStep3ScreenState extends State<OnboardingStep3Screen> {
                 'Where do you need help most?',
                 style: Theme.of(context).textTheme.headlineSmall?.copyWith(
                   fontWeight: FontWeight.bold,
-                  color: AppColors.foreground,
+                  color: AppColors.foreground(context),
                 ),
               ),
               const SizedBox(height: 8),
               Text(
                 'Select all environments that apply.',
                 style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                  color: AppColors.mutedForeground,
+                  color: AppColors.mutedForeground(context),
                 ),
               ),
               const SizedBox(height: 24),
@@ -147,18 +147,18 @@ class _OnboardingStep3ScreenState extends State<OnboardingStep3Screen> {
                         duration: const Duration(milliseconds: 150),
                         padding: const EdgeInsets.all(16),
                         decoration: BoxDecoration(
-                          color: AppColors.card,
+                          color: AppColors.card(context),
                           borderRadius: BorderRadius.circular(24),
                           border: Border.all(
                             color: isSelected
-                                ? AppColors.primary
-                                : AppColors.border,
+                                ? AppColors.primary(context)
+                                : AppColors.border(context),
                             width: 2,
                           ),
                           boxShadow: isSelected
                               ? [
                                   BoxShadow(
-                                    color: AppColors.primary
+                                    color: AppColors.primary(context)
                                         .withValues(alpha: 0.15),
                                     blurRadius: 8,
                                     offset: const Offset(0, 2),
@@ -173,16 +173,16 @@ class _OnboardingStep3ScreenState extends State<OnboardingStep3Screen> {
                               height: 48,
                               decoration: BoxDecoration(
                                 color: e.isSecondary
-                                    ? AppColors.secondary
-                                    : AppColors.accent,
+                                    ? AppColors.secondary(context)
+                                    : AppColors.accent(context),
                                 shape: BoxShape.circle,
                               ),
                               child: Icon(
                                 e.icon,
                                 size: 24,
                                 color: e.isSecondary
-                                    ? AppColors.primary
-                                    : AppColors.foreground,
+                                    ? AppColors.primary(context)
+                                    : AppColors.foreground(context),
                               ),
                             ),
                             const SizedBox(width: 16),
@@ -192,18 +192,18 @@ class _OnboardingStep3ScreenState extends State<OnboardingStep3Screen> {
                                 children: [
                                   Text(
                                     e.label,
-                                    style: const TextStyle(
+                                    style: TextStyle(
                                       fontSize: 15,
                                       fontWeight: FontWeight.w600,
-                                      color: AppColors.foreground,
+                                      color: AppColors.foreground(context),
                                     ),
                                   ),
                                   const SizedBox(height: 2),
                                   Text(
                                     e.desc,
-                                    style: const TextStyle(
+                                    style: TextStyle(
                                       fontSize: 12,
-                                      color: AppColors.mutedForeground,
+                                      color: AppColors.mutedForeground(context),
                                     ),
                                   ),
                                 ],
@@ -219,8 +219,8 @@ class _OnboardingStep3ScreenState extends State<OnboardingStep3Screen> {
                                 key: ValueKey(isSelected),
                                 size: 20,
                                 color: isSelected
-                                    ? AppColors.primary
-                                    : AppColors.border,
+                                    ? AppColors.primary(context)
+                                    : AppColors.border(context),
                               ),
                             ),
                           ],

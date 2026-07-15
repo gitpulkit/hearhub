@@ -24,9 +24,9 @@ class HearHubButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final (backgroundColor, foregroundColor) = switch (variant) {
-      HearHubButtonVariant.primary => (AppColors.primary, AppColors.primaryForeground),
-      HearHubButtonVariant.secondary => (AppColors.secondary, AppColors.foreground),
-      HearHubButtonVariant.accent => (AppColors.accent, AppColors.foreground),
+      HearHubButtonVariant.primary => (AppColors.primary(context), AppColors.primaryForeground(context)),
+      HearHubButtonVariant.secondary => (AppColors.secondary(context), AppColors.foreground(context)),
+      HearHubButtonVariant.accent => (AppColors.accent(context), AppColors.foreground(context)),
     };
 
     final effectiveColor = onPressed == null

@@ -76,21 +76,21 @@ class _SignupScreenState extends State<SignupScreen> {
                   'Create account',
                   style: Theme.of(context).textTheme.headlineMedium?.copyWith(
                         fontWeight: FontWeight.bold,
-                        color: AppColors.foreground,
+                        color: AppColors.foreground(context),
                       ),
                 ),
                 const SizedBox(height: 8),
-                const Text(
+                Text(
                   'Get started with HearHub in a minute.',
-                  style: TextStyle(color: AppColors.mutedForeground),
+                  style: TextStyle(color: AppColors.mutedForeground(context)),
                 ),
                 const SizedBox(height: 24),
                 Container(
                   padding: const EdgeInsets.all(20),
                   decoration: BoxDecoration(
-                    color: AppColors.card,
+                    color: AppColors.card(context),
                     borderRadius: BorderRadius.circular(24),
-                    border: Border.all(color: AppColors.border),
+                    border: Border.all(color: AppColors.border(context)),
                   ),
                   child: Column(
                     children: [

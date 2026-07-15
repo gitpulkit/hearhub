@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_lucide/flutter_lucide.dart';
 import 'package:go_router/go_router.dart';
+import '../l10n/app_localizations.dart';
 import '../theme/app_colors.dart';
 import '../widgets/mobile_layout.dart';
 import '../widgets/bottom_nav.dart';
@@ -102,19 +103,19 @@ class _SearchScreenState extends State<SearchScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text(
+                Text(
                   'Search',
                   style: TextStyle(
                     fontSize: 28,
                     fontWeight: FontWeight.w800,
-                    color: AppColors.foreground,
+                    color: AppColors.foreground(context),
                   ),
                 ),
                 const SizedBox(height: 20),
 
                 // ── Search bar (anchored) ─────────────────────────
                 Material(
-                  color: AppColors.card,
+                  color: AppColors.card(context),
                   borderRadius: BorderRadius.circular(32),
                   elevation: 2,
                   shadowColor: Colors.black.withValues(alpha: 0.06),
@@ -123,22 +124,22 @@ class _SearchScreenState extends State<SearchScreen> {
                     focusNode: _focusNode,
                     onSubmitted: _onSubmitted,
                     textInputAction: TextInputAction.search,
-                    style: const TextStyle(
+                    style: TextStyle(
                       fontSize: 15,
-                      color: AppColors.foreground,
+                      color: AppColors.foreground(context),
                     ),
                     decoration: InputDecoration(
-                      hintText: 'Search tools or situations...',
-                      hintStyle: const TextStyle(
+                      hintText: AppLocalizations.of(context).searchHint,
+                      hintStyle: TextStyle(
                         fontSize: 15,
-                        color: AppColors.mutedForeground,
+                        color: AppColors.mutedForeground(context),
                       ),
-                      prefixIcon: const Padding(
+                      prefixIcon: Padding(
                         padding: EdgeInsets.only(left: 16, right: 8),
                         child: Icon(
                           LucideIcons.search,
                           size: 20,
-                          color: AppColors.mutedForeground,
+                          color: AppColors.mutedForeground(context),
                         ),
                       ),
                       prefixIconConstraints: const BoxConstraints(
@@ -147,9 +148,9 @@ class _SearchScreenState extends State<SearchScreen> {
                       ),
                       suffixIcon: isSearching
                           ? IconButton(
-                              icon: const Icon(LucideIcons.x,
+                              icon: Icon(LucideIcons.x,
                                   size: 16,
-                                  color: AppColors.mutedForeground),
+                                  color: AppColors.mutedForeground(context)),
                               onPressed: () {
                                 _controller.clear();
                                 setState(() => _query = '');
@@ -161,7 +162,7 @@ class _SearchScreenState extends State<SearchScreen> {
                         borderSide: BorderSide.none,
                       ),
                       filled: true,
-                      fillColor: AppColors.card,
+                      fillColor: AppColors.card(context),
                       contentPadding: const EdgeInsets.symmetric(
                         horizontal: 16,
                         vertical: 16,
@@ -181,7 +182,7 @@ class _SearchScreenState extends State<SearchScreen> {
                               _NoResultsTile(query: _query)
                             else
                               Material(
-                                color: AppColors.card,
+                                color: AppColors.card(context),
                                 borderRadius: BorderRadius.circular(20),
                                 elevation: 3,
                                 shadowColor: Colors.black.withValues(alpha: 0.07),
@@ -226,12 +227,12 @@ class _SearchScreenState extends State<SearchScreen> {
                                 if (_recentSearches.isNotEmpty)
                                   GestureDetector(
                                     onTap: _clearAll,
-                                    child: const Text(
+                                    child: Text(
                                       'Clear all',
                                       style: TextStyle(
                                         fontSize: 13,
                                         fontWeight: FontWeight.w600,
-                                        color: AppColors.primary,
+                                        color: AppColors.primary(context),
                                       ),
                                     ),
                                   ),
@@ -239,13 +240,13 @@ class _SearchScreenState extends State<SearchScreen> {
                             ),
                             const SizedBox(height: 8),
                             if (_recentSearches.isEmpty)
-                              const Padding(
+                              Padding(
                                 padding: EdgeInsets.symmetric(vertical: 16),
                                 child: Text(
                                   'No recent searches',
                                   style: TextStyle(
                                     fontSize: 14,
-                                    color: AppColors.mutedForeground,
+                                    color: AppColors.mutedForeground(context),
                                   ),
                                 ),
                               )
@@ -288,11 +289,11 @@ class _SectionLabel extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       text.toUpperCase(),
-      style: const TextStyle(
+      style: TextStyle(
         fontSize: 11,
         fontWeight: FontWeight.w700,
         letterSpacing: 1.4,
-        color: AppColors.mutedForeground,
+        color: AppColors.mutedForeground(context),
       ),
     );
   }
@@ -311,8 +312,8 @@ class _CategoryChip extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final bgColor = isSecondary ? AppColors.secondary : AppColors.accent;
-    final iconColor = isSecondary ? AppColors.primary : AppColors.foreground;
+    final bgColor = isSecondary ? AppColors.secondary(context) : AppColors.accent(context);
+    final iconColor = isSecondary ? AppColors.primary(context) : AppColors.foreground(context);
 
     return GestureDetector(
       onTap: () {},
@@ -361,27 +362,27 @@ class _RecentSearchRow extends StatelessWidget {
         padding: const EdgeInsets.symmetric(vertical: 12),
         child: Row(
           children: [
-            const Icon(
+            Icon(
               LucideIcons.history,
               size: 18,
-              color: AppColors.mutedForeground,
+              color: AppColors.mutedForeground(context),
             ),
             const SizedBox(width: 14),
             Expanded(
               child: Text(
                 label,
-                style: const TextStyle(
+                style: TextStyle(
                   fontSize: 15,
-                  color: AppColors.foreground,
+                  color: AppColors.foreground(context),
                 ),
               ),
             ),
             GestureDetector(
               onTap: onRemove,
-              child: const Icon(
+              child: Icon(
                 LucideIcons.x,
                 size: 16,
-                color: AppColors.mutedForeground,
+                color: AppColors.mutedForeground(context),
               ),
             ),
           ],
@@ -407,9 +408,9 @@ class _SuggestionTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final iconBg =
-        tool.isSecondaryIcon ? AppColors.secondary : AppColors.accent;
+        tool.isSecondaryIcon ? AppColors.secondary(context) : AppColors.accent(context);
     final iconColor =
-        tool.isSecondaryIcon ? AppColors.primary : AppColors.foreground;
+        tool.isSecondaryIcon ? AppColors.primary(context) : AppColors.foreground(context);
 
     return InkWell(
       onTap: onTap,
@@ -439,37 +440,37 @@ class _SuggestionTile extends StatelessWidget {
                     children: [
                       Text(
                         tool.name,
-                        style: const TextStyle(
+                        style: TextStyle(
                           fontSize: 14,
                           fontWeight: FontWeight.w600,
-                          color: AppColors.foreground,
+                          color: AppColors.foreground(context),
                         ),
                       ),
                       Text(
                         tool.tagline,
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
-                        style: const TextStyle(
+                        style: TextStyle(
                           fontSize: 11,
-                          color: AppColors.mutedForeground,
+                          color: AppColors.mutedForeground(context),
                         ),
                       ),
                     ],
                   ),
                 ),
-                const Icon(
+                Icon(
                   LucideIcons.arrow_right,
                   size: 14,
-                  color: AppColors.mutedForeground,
+                  color: AppColors.mutedForeground(context),
                 ),
               ],
             ),
           ),
           if (!isLast)
-            const Divider(
+            Divider(
               height: 1,
               indent: 68,
-              color: AppColors.border,
+              color: AppColors.border(context),
             ),
         ],
       ),
@@ -488,19 +489,19 @@ class _NoResultsTile extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
       decoration: BoxDecoration(
-        color: AppColors.card,
+        color: AppColors.card(context),
         borderRadius: BorderRadius.circular(20),
       ),
       child: Row(
         children: [
-          const Icon(LucideIcons.search_x,
-              size: 18, color: AppColors.mutedForeground),
+          Icon(LucideIcons.search_x,
+              size: 18, color: AppColors.mutedForeground(context)),
           const SizedBox(width: 12),
           Text(
             'No tools found for "$query"',
-            style: const TextStyle(
+            style: TextStyle(
               fontSize: 14,
-              color: AppColors.mutedForeground,
+              color: AppColors.mutedForeground(context),
             ),
           ),
         ],

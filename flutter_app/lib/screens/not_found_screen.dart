@@ -19,14 +19,14 @@ class NotFoundScreen extends StatelessWidget {
                 '404',
                 style: Theme.of(context).textTheme.displayLarge?.copyWith(
                   fontWeight: FontWeight.bold,
-                  color: AppColors.mutedForeground,
+                  color: AppColors.mutedForeground(context),
                 ),
               ),
               const SizedBox(height: 16),
               Text(
                 'Page not found',
                 style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                  color: AppColors.foreground,
+                  color: AppColors.foreground(context),
                 ),
               ),
               const SizedBox(height: 32),

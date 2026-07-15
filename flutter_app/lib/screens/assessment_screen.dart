@@ -81,18 +81,18 @@ class _AssessmentScreenState extends State<AssessmentScreen> {
                 Container(
                   width: 96,
                   height: 96,
-                  decoration: const BoxDecoration(
-                    color: AppColors.primary,
+                  decoration: BoxDecoration(
+                    color: AppColors.primary(context),
                     shape: BoxShape.circle,
                   ),
-                  child: const Icon(LucideIcons.check, size: 48, color: AppColors.primaryForeground),
+                  child: Icon(LucideIcons.check, size: 48, color: AppColors.primaryForeground(context)),
                 ),
                 const SizedBox(height: 24),
                 Text(
                   'Thank you!',
                   style: Theme.of(context).textTheme.headlineSmall?.copyWith(
                     fontWeight: FontWeight.bold,
-                    color: AppColors.foreground,
+                    color: AppColors.foreground(context),
                   ),
                   textAlign: TextAlign.center,
                 ),
@@ -100,7 +100,7 @@ class _AssessmentScreenState extends State<AssessmentScreen> {
                 Text(
                   'Finding the best tools for you...',
                   style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                    color: AppColors.mutedForeground,
+                    color: AppColors.mutedForeground(context),
                   ),
                   textAlign: TextAlign.center,
                 ),
@@ -127,29 +127,29 @@ class _AssessmentScreenState extends State<AssessmentScreen> {
                       width: 48,
                       height: 48,
                       decoration: BoxDecoration(
-                        color: AppColors.card,
+                        color: AppColors.card(context),
                         shape: BoxShape.circle,
-                        border: Border.all(color: AppColors.border),
+                        border: Border.all(color: AppColors.border(context)),
                       ),
-                      child: const Icon(LucideIcons.arrow_left, size: 24, color: AppColors.foreground),
+                      child: Icon(LucideIcons.arrow_left, size: 24, color: AppColors.foreground(context)),
                     ),
                   ),
-                  const Text(
+                  Text(
                     'Question 3 of 10',
                     style: TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.w600,
-                      color: AppColors.foreground,
+                      color: AppColors.foreground(context),
                     ),
                   ),
                   GestureDetector(
                     onTap: () => context.popOrGo('/dashboard'),
-                    child: const Text(
+                    child: Text(
                       'Skip',
                       style: TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.w500,
-                        color: AppColors.mutedForeground,
+                        color: AppColors.mutedForeground(context),
                       ),
                     ),
                   ),
@@ -164,18 +164,18 @@ class _AssessmentScreenState extends State<AssessmentScreen> {
                     Container(
                       width: 100,
                       height: 100,
-                      decoration: const BoxDecoration(
-                        color: AppColors.secondary,
+                      decoration: BoxDecoration(
+                        color: AppColors.secondary(context),
                         shape: BoxShape.circle,
                       ),
-                      child: Icon(data.icon, size: 48, color: AppColors.primary),
+                      child: Icon(data.icon, size: 48, color: AppColors.primary(context)),
                     ),
                     const SizedBox(height: 32),
                     Text(
                       data.question,
                       style: Theme.of(context).textTheme.headlineSmall?.copyWith(
                         fontWeight: FontWeight.bold,
-                        color: AppColors.foreground,
+                        color: AppColors.foreground(context),
                       ),
                       textAlign: TextAlign.center,
                     ),
@@ -183,7 +183,7 @@ class _AssessmentScreenState extends State<AssessmentScreen> {
                     Text(
                       data.subtext,
                       style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                        color: AppColors.mutedForeground,
+                        color: AppColors.mutedForeground(context),
                       ),
                       textAlign: TextAlign.center,
                     ),
@@ -193,7 +193,7 @@ class _AssessmentScreenState extends State<AssessmentScreen> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          const Icon(LucideIcons.check, size: 20, color: AppColors.primaryForeground),
+                          Icon(LucideIcons.check, size: 20, color: AppColors.primaryForeground(context)),
                           const SizedBox(width: 12),
                           const Text('Yes, often'),
                         ],
@@ -206,7 +206,7 @@ class _AssessmentScreenState extends State<AssessmentScreen> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          const Icon(LucideIcons.x, size: 20, color: AppColors.foreground),
+                          Icon(LucideIcons.x, size: 20, color: AppColors.foreground(context)),
                           const SizedBox(width: 12),
                           const Text('No, rarely'),
                         ],
@@ -221,12 +221,12 @@ class _AssessmentScreenState extends State<AssessmentScreen> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    const Icon(LucideIcons.info, size: 16, color: AppColors.mutedForeground),
+                    Icon(LucideIcons.info, size: 16, color: AppColors.mutedForeground(context)),
                     const SizedBox(width: 8),
                     Text(
                       'Your answers help us personalize tools.',
                       style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                        color: AppColors.mutedForeground,
+                        color: AppColors.mutedForeground(context),
                       ),
                     ),
                   ],

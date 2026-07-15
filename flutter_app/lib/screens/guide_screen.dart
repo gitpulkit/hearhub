@@ -63,11 +63,11 @@ class GuideScreen extends StatelessWidget {
                       width: 48,
                       height: 48,
                       decoration: BoxDecoration(
-                        color: AppColors.card,
+                        color: AppColors.card(context),
                         shape: BoxShape.circle,
-                        border: Border.all(color: AppColors.border),
+                        border: Border.all(color: AppColors.border(context)),
                       ),
-                      child: const Icon(LucideIcons.arrow_left, size: 24, color: AppColors.foreground),
+                      child: Icon(LucideIcons.arrow_left, size: 24, color: AppColors.foreground(context)),
                     ),
                   ),
                   const SizedBox(height: 24),
@@ -75,14 +75,14 @@ class GuideScreen extends StatelessWidget {
                     _title,
                     style: Theme.of(context).textTheme.headlineSmall?.copyWith(
                       fontWeight: FontWeight.bold,
-                      color: AppColors.foreground,
+                      color: AppColors.foreground(context),
                     ),
                   ),
                   const SizedBox(height: 8),
                   Text(
                     _subtitle,
                     style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                      color: AppColors.mutedForeground,
+                      color: AppColors.mutedForeground(context),
                     ),
                   ),
                   const SizedBox(height: 24),
@@ -91,7 +91,7 @@ class GuideScreen extends StatelessWidget {
                     'Recommended Tools',
                     style: Theme.of(context).textTheme.titleMedium?.copyWith(
                       fontWeight: FontWeight.w600,
-                      color: AppColors.foreground,
+                      color: AppColors.foreground(context),
                     ),
                   ),
                   const SizedBox(height: 16),
@@ -112,9 +112,9 @@ class GuideScreen extends StatelessWidget {
                               width: 220,
                               padding: const EdgeInsets.all(20),
                               decoration: BoxDecoration(
-                                color: AppColors.card,
+                                color: AppColors.card(context),
                                 borderRadius: BorderRadius.circular(24),
-                                border: Border.all(color: AppColors.border),
+                                border: Border.all(color: AppColors.border(context)),
                               ),
                               child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
@@ -123,21 +123,21 @@ class GuideScreen extends StatelessWidget {
                               Container(
                                 width: 48,
                                 height: 48,
-                                decoration: const BoxDecoration(
-                                  color: AppColors.accent,
+                                decoration: BoxDecoration(
+                                  color: AppColors.accent(context),
                                   shape: BoxShape.circle,
                                 ),
-                                child: Icon(tool.icon, size: 24, color: AppColors.foreground),
+                                child: Icon(tool.icon, size: 24, color: AppColors.foreground(context)),
                               ),
                               const SizedBox(height: 12),
                               Text(
                                 tool.name,
                                 maxLines: 1,
                                 overflow: TextOverflow.ellipsis,
-                                style: const TextStyle(
+                                style: TextStyle(
                                   fontWeight: FontWeight.w600,
                                   fontSize: 16,
-                                  color: AppColors.foreground,
+                                  color: AppColors.foreground(context),
                                 ),
                               ),
                               const SizedBox(height: 4),
@@ -145,10 +145,10 @@ class GuideScreen extends StatelessWidget {
                                 tool.tagline,
                                 maxLines: 2,
                                 overflow: TextOverflow.ellipsis,
-                                style: const TextStyle(
+                                style: TextStyle(
                                   fontSize: 12,
                                   height: 1.3,
-                                  color: AppColors.mutedForeground,
+                                  color: AppColors.mutedForeground(context),
                                 ),
                               ),
                               const SizedBox(height: 4),
@@ -156,9 +156,9 @@ class GuideScreen extends StatelessWidget {
                                 categoryLabels[tool.category] ?? tool.category,
                                 maxLines: 1,
                                 overflow: TextOverflow.ellipsis,
-                                style: const TextStyle(
+                                style: TextStyle(
                                   fontSize: 11,
-                                  color: AppColors.primary,
+                                  color: AppColors.primary(context),
                                 ),
                               ),
                             ],
@@ -175,7 +175,7 @@ class GuideScreen extends StatelessWidget {
                     'Watch How It Works',
                     style: Theme.of(context).textTheme.titleMedium?.copyWith(
                       fontWeight: FontWeight.w600,
-                      color: AppColors.foreground,
+                      color: AppColors.foreground(context),
                     ),
                   ),
                   const SizedBox(height: 16),
@@ -187,15 +187,15 @@ class GuideScreen extends StatelessWidget {
                   Container(
                     padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
                     decoration: BoxDecoration(
-                      color: AppColors.foreground.withValues(alpha: 0.8),
+                      color: AppColors.foreground(context).withValues(alpha: 0.8),
                       borderRadius: BorderRadius.circular(16),
                     ),
-                    child: const Text(
+                    child: Text(
                       'Professor: "Today we will study..."',
                       style: TextStyle(
                         fontSize: 14,
                         fontFamily: 'monospace',
-                        color: AppColors.primaryForeground,
+                        color: AppColors.primaryForeground(context),
                       ),
                     ),
                   ),
@@ -205,7 +205,7 @@ class GuideScreen extends StatelessWidget {
                     'How to Use',
                     style: Theme.of(context).textTheme.titleMedium?.copyWith(
                       fontWeight: FontWeight.w600,
-                      color: AppColors.foreground,
+                      color: AppColors.foreground(context),
                     ),
                   ),
                   const SizedBox(height: 16),
@@ -217,17 +217,17 @@ class GuideScreen extends StatelessWidget {
                         Container(
                           width: 32,
                           height: 32,
-                          decoration: const BoxDecoration(
-                            color: AppColors.primary,
+                          decoration: BoxDecoration(
+                            color: AppColors.primary(context),
                             shape: BoxShape.circle,
                           ),
                           alignment: Alignment.center,
                           child: Text(
                             '${e.key + 1}',
-                            style: const TextStyle(
+                            style: TextStyle(
                               fontWeight: FontWeight.bold,
                               fontSize: 14,
-                              color: AppColors.primaryForeground,
+                              color: AppColors.primaryForeground(context),
                             ),
                           ),
                         ),
@@ -237,9 +237,9 @@ class GuideScreen extends StatelessWidget {
                             padding: const EdgeInsets.only(top: 4),
                             child: Text(
                               e.value,
-                              style: const TextStyle(
+                              style: TextStyle(
                                 fontSize: 16,
-                                color: AppColors.foreground,
+                                color: AppColors.foreground(context),
                               ),
                             ),
                           ),
@@ -259,7 +259,7 @@ class GuideScreen extends StatelessWidget {
             child: Container(
               constraints: const BoxConstraints(maxWidth: 480),
               padding: const EdgeInsets.all(32),
-              color: AppColors.background,
+              color: AppColors.background(context),
               child: HearHubButton(
                 onPressed: () => context.go('/dashboard'),
                 child: const Text('Try these tools'),
@@ -362,13 +362,13 @@ class _LiveTranscribeCarouselState extends State<_LiveTranscribeCarousel> {
                   width: 64,
                   height: 64,
                   decoration: BoxDecoration(
-                    color: AppColors.primary.withValues(alpha: 0.9),
+                    color: AppColors.primary(context).withValues(alpha: 0.9),
                     shape: BoxShape.circle,
                   ),
-                  child: const Icon(
+                  child: Icon(
                     LucideIcons.play,
                     size: 32,
-                    color: AppColors.primaryForeground,
+                    color: AppColors.primaryForeground(context),
                   ),
                 ),
               ),

@@ -1,5 +1,6 @@
 import 'package:go_router/go_router.dart';
 import 'auth/state/auth_state.dart';
+import 'settings/app_settings.dart';
 import 'screens/index_screen.dart';
 import 'screens/onboarding_screen.dart';
 import 'screens/guide_screen.dart';
@@ -15,7 +16,8 @@ import 'screens/onboarding_step2_screen.dart';
 import 'screens/onboarding_step3_screen.dart';
 import 'screens/tools_screen.dart';
 
-GoRouter createAppRouter(AuthState authState) => GoRouter(
+GoRouter createAppRouter(AuthState authState, AppSettings appSettings) =>
+    GoRouter(
   initialLocation: '/',
   refreshListenable: authState,
   routes: [
@@ -66,7 +68,10 @@ GoRouter createAppRouter(AuthState authState) => GoRouter(
     ),
     GoRoute(
       path: '/settings',
-      builder: (context, state) => PersonalizeScreen(authState: authState),
+      builder: (context, state) => PersonalizeScreen(
+        authState: authState,
+        appSettings: appSettings,
+      ),
     ),
     GoRoute(
       path: '/assessment/:scenario',
