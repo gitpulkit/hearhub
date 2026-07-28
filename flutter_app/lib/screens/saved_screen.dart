@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_lucide/flutter_lucide.dart';
+import 'package:go_router/go_router.dart';
 import '../l10n/app_localizations.dart';
 import '../theme/app_colors.dart';
 import '../widgets/mobile_layout.dart';
@@ -70,7 +71,7 @@ class _SavedScreenState extends State<SavedScreen> {
         ),
       );
 
-  Widget _savedCard(BuildContext context, String tag, String title, String desc, String cta) {
+  Widget _savedCard(BuildContext context, ToolItem tool) {
     return Container(
       decoration: BoxDecoration(color: AppColors.card(context), borderRadius: BorderRadius.circular(18), boxShadow: [
         BoxShadow(color: Colors.black.withValues(alpha: 0.03), blurRadius: 8, offset: const Offset(0, 4)),
@@ -82,17 +83,24 @@ class _SavedScreenState extends State<SavedScreen> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Container(padding: EdgeInsets.symmetric(horizontal: 8, vertical: 6), decoration: BoxDecoration(color: AppColors.secondary(context), borderRadius: BorderRadius.circular(8)), child: Text(tag, style: TextStyle(fontSize: 12, color: AppColors.primary(context)))),
+              Container(padding: EdgeInsets.symmetric(horizontal: 8, vertical: 6), decoration: BoxDecoration(color: AppColors.secondary(context), borderRadius: BorderRadius.circular(8)), child: Text(tool.tag, style: TextStyle(fontSize: 12, color: AppColors.primary(context)))),
               IconButton(onPressed: () {}, icon: Icon(LucideIcons.bookmark, color: AppColors.mutedForeground(context))),
             ],
           ),
           const SizedBox(height: 8),
-          Text(title, style: TextStyle(fontSize: 18, fontWeight: FontWeight.w700, color: AppColors.foreground(context))),
+          Text(tool.title, style: TextStyle(fontSize: 18, fontWeight: FontWeight.w700, color: AppColors.foreground(context))),
           const SizedBox(height: 10),
-          Text(desc, style: TextStyle(fontSize: 14, color: AppColors.mutedForeground(context))),
+          Text(tool.desc, style: TextStyle(fontSize: 14, color: AppColors.mutedForeground(context))),
           const SizedBox(height: 14),
           Row(children: [
-            Expanded(child: HearHubButton(onPressed: () {}, minHeight: 48, borderRadius: 16, child: Text(cta))),
+            Expanded(
+              child: HearHubButton(
+                onPressed: () => context.push('/tool/${tool.id}'),
+                minHeight: 48,
+                borderRadius: 16,
+                child: Text(tool.cta),
+              ),
+            ),
           ]),
         ],
       ),
@@ -136,7 +144,7 @@ class _SavedScreenState extends State<SavedScreen> {
                   ...filteredTools.map((tool) => 
                     Padding(
                       padding: const EdgeInsets.only(bottom: 16),
-                      child: _savedCard(context, tool.tag, tool.title, tool.desc, tool.cta),
+                      child: _savedCard(context, tool),
                     ),
                   ),
                 ],

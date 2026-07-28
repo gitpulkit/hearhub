@@ -182,7 +182,8 @@ class ToolDetailScreen extends StatelessWidget {
       ],
       contexts: ['Restaurants', 'Cinemas', 'Classrooms', 'Places of worship'],
       imageAsset: 'assets/images/hearing_loop_guide.png',
-      externalUrl: 'https://www.hearingloss.org/hearing-help/technology/hat/hearing-loop-systems/',
+      externalUrl:
+          'https://www.hearingloss.org/find-help/hearing-assistive-technology/hearing-loop-technology/',
     ),
     'workplace-guide': _ToolDetail(
       name: 'Workplace Accommodations',
@@ -200,7 +201,7 @@ class ToolDetailScreen extends StatelessWidget {
       contexts: ['Open offices', 'Remote work', 'Team meetings'],
       imageAsset: 'assets/images/workplace_guide.png',
       externalUrl:
-          'https://www.eeoc.gov/laws/guidance/deafness-and-hearing-impairments-workplace-and-ada',
+          'https://www.eeoc.gov/laws/guidance/hearing-disabilities-workplace-and-americans-disabilities-act',
     ),
     'wulira-app': _ToolDetail(
       name: 'Wulira App',
@@ -284,6 +285,208 @@ class ToolDetailScreen extends StatelessWidget {
       androidStoreUrl:
           'https://play.google.com/store/apps/details?id=com.letsenvision.envisionai',
       iosStoreUrl: 'https://apps.apple.com/us/app/envision-ai/id1268632314',
+    ),
+    'airport-guide': _ToolDetail(
+      name: 'Airport Navigation Guide',
+      tagline: 'Tips for visual boarding cues and gate announcements.',
+      icon: LucideIcons.plane,
+      helpsWith: [
+        'Catch boarding and gate changes without relying on PA systems.',
+        'Use visual cues, apps, and staff support through security and gates.',
+      ],
+      steps: [
+        'Check your airline app for gate updates and boarding group alerts.',
+        'Look for visual boarding displays and request written instructions if needed.',
+        'Arrive early and ask gate agents for preferred boarding or captioned alerts.',
+      ],
+      contexts: ['Airports', 'Travel', 'Public spaces'],
+      imageAsset: 'assets/images/hearing_loop_guide.png',
+      externalUrl:
+          'https://www.hearingloss.org/8-tips-for-holiday-air-travel-with-hearing-loss/',
+    ),
+    'asl-signs': _ToolDetail(
+      name: 'Emergency ASL Signs',
+      tagline: 'Quick visual guide for critical communication signs.',
+      icon: LucideIcons.hand,
+      helpsWith: [
+        'Communicate urgent needs when speech is hard to hear or use.',
+        'Recognize common emergency signs used by first responders.',
+      ],
+      steps: [
+        'Learn core signs for help, emergency, pain, and medical needs.',
+        'Practice them with family or caregivers before you need them.',
+        'Keep a short reference card or screenshot on your phone.',
+      ],
+      contexts: ['Emergencies', 'Healthcare', 'Public safety'],
+      imageAsset: 'assets/images/hearing_loop_guide.png',
+      externalUrl: 'https://www.nad.org/resources/american-sign-language/',
+    ),
+    'reddit-accessible': _ToolDetail(
+      name: 'Reddit Accessible',
+      tagline: 'Screen reader optimized interface for Reddit browsing.',
+      icon: LucideIcons.accessibility,
+      helpsWith: [
+        'Browse Reddit with clearer layout and screen reader support.',
+        'Reduce visual clutter so posts and replies are easier to follow.',
+      ],
+      steps: [
+        'Open an accessibility-friendly Reddit client or Reddit’s accessibility settings.',
+        'Enable larger text, captions, and screen reader labels where available.',
+        'Use search and saved posts to keep important threads easy to revisit.',
+      ],
+      contexts: ['Social media', 'At Home', 'Community'],
+      imageAsset: 'assets/images/live_transcribe.png',
+      externalUrl: 'https://www.reddit.com/',
+    ),
+    'voicebase': _ToolDetail(
+      name: 'VoiceBase',
+      tagline: 'Voice-to-text transcription and organization tool.',
+      icon: LucideIcons.audio_lines,
+      helpsWith: [
+        'Turn recorded speech into searchable text.',
+        'Organize transcripts from meetings, classes, or calls.',
+      ],
+      steps: [
+        'Upload or record audio in your transcription app.',
+        'Review the transcript and correct key names or terms.',
+        'Save or share the notes so you can revisit them later.',
+      ],
+      contexts: ['Meetings', 'Classrooms', 'At Home'],
+      imageAsset: 'assets/images/otter_ai.png',
+      androidStoreUrl:
+          'https://play.google.com/store/search?q=voice%20transcription&c=apps',
+      iosStoreUrl: 'https://apps.apple.com/us/search?term=voice%20transcription',
+    ),
+    'hearing-spectrum': _ToolDetail(
+      name: 'Understanding the Hearing Spectrum',
+      tagline: 'Learn about different types of hearing loss and solutions.',
+      icon: LucideIcons.ear,
+      helpsWith: [
+        'Understand mild, moderate, severe, and profound hearing loss.',
+        'Compare tools and accommodations that fit different hearing needs.',
+      ],
+      steps: [
+        'Review how loudness and clarity differ across the hearing spectrum.',
+        'Note which situations are hardest for you (noise, distance, phone).',
+        'Match those situations to apps, devices, or workplace supports.',
+      ],
+      contexts: ['Education', 'Healthcare', 'Self-advocacy'],
+      imageAsset: 'assets/images/hearing_test_pro.png',
+      externalUrl:
+          'https://www.hearingloss.org/hearing-help/hearing-loss-basics/',
+    ),
+    'asl-basics': _ToolDetail(
+      name: 'ASL Basics for Beginners',
+      tagline: 'Introduction to American Sign Language fundamentals.',
+      icon: LucideIcons.languages,
+      helpsWith: [
+        'Build a starter vocabulary for everyday conversations.',
+        'Practice fingerspelling, greetings, and common phrases.',
+      ],
+      steps: [
+        'Start with the alphabet, numbers, and common greetings.',
+        'Practice short phrases for introductions and daily needs.',
+        'Use reputable ASL videos or classes to refine handshape and movement.',
+      ],
+      contexts: ['Education', 'Community', 'At Home'],
+      imageAsset: 'assets/images/hearing_loop_guide.png',
+      externalUrl: 'https://www.nad.org/resources/american-sign-language/',
+    ),
+    'navigation-guide': _ToolDetail(
+      name: 'Public Transit Navigation Guide',
+      tagline: 'Tips for using public transportation confidently.',
+      icon: LucideIcons.bus,
+      helpsWith: [
+        'Follow route and stop changes without relying only on audio announcements.',
+        'Use apps, displays, and staff support for smoother trips.',
+      ],
+      steps: [
+        'Check your transit app for real-time arrivals and service alerts.',
+        'Watch visual stop displays and request written directions when needed.',
+        'Sit near the driver or conductor and ask for a tap or text alert at your stop.',
+      ],
+      contexts: ['Commuting', 'Public transit', 'Travel'],
+      imageAsset: 'assets/images/hearing_loop_guide.png',
+      externalUrl:
+          'https://www.hearingloss.org/advocacy-and-resources/know-your-rights/',
+    ),
+    'u-signup-application': _ToolDetail(
+      name: 'U-Signup Application',
+      tagline:
+          'Uganda Sign Language learning support for clearer communication.',
+      icon: LucideIcons.languages,
+      helpsWith: [
+        'Learn Uganda Sign Language vocabulary for school and daily life.',
+        'Practice signing with guided lessons and visual examples.',
+      ],
+      steps: [
+        'Download or open the U-Signup learning app.',
+        'Start with beginner signs for greetings and classroom needs.',
+        'Practice regularly and review saved signs before conversations.',
+      ],
+      contexts: ['Classrooms', 'At Home', 'Meetings'],
+      imageAsset: 'assets/images/live_transcribe.png',
+      androidStoreUrl:
+          'https://play.google.com/store/search?q=Uganda%20Sign%20Language&c=apps',
+      iosStoreUrl:
+          'https://apps.apple.com/us/search?term=Uganda%20Sign%20Language',
+    ),
+    'unad-support-programs': _ToolDetail(
+      name: 'UNAD Support Programs',
+      tagline:
+          'Educational support, sign-language training, and vocational guidance.',
+      icon: LucideIcons.graduation_cap,
+      helpsWith: [
+        'Find education and vocational programs for deaf and hard-of-hearing learners.',
+        'Access sign-language training and community support resources.',
+      ],
+      steps: [
+        'Review available UNAD education and vocational support options.',
+        'Contact a program coordinator about enrollment or counseling.',
+        'Choose a training path that matches your school or work goals.',
+      ],
+      contexts: ['Classrooms', 'Meetings', 'At Home'],
+      imageAsset: 'assets/images/workplace_guide.png',
+      externalUrl: 'https://unadeaf.or.ug/programs-services/',
+    ),
+    'zoom-teams-live-captions': _ToolDetail(
+      name: 'Zoom / Microsoft Teams Live Captions',
+      tagline:
+          'Built-in captions and transcripts for virtual workplace meetings.',
+      icon: LucideIcons.captions,
+      helpsWith: [
+        'Follow meetings without relying only on audio.',
+        'Turn on live captions and save transcripts for later review.',
+      ],
+      steps: [
+        'Join your Zoom or Teams meeting as usual.',
+        'Enable Live Captions / Captions from the meeting controls.',
+        'Turn on transcription if you want searchable notes afterward.',
+      ],
+      contexts: ['Meetings', 'Classrooms', 'Remote work'],
+      imageAsset: 'assets/images/otter_ai.png',
+      externalUrl:
+          'https://support.zoom.com/hc/en-us/articles/207279736-Managing-and-viewing-captions',
+    ),
+    'baby-sign-language-dictionary': _ToolDetail(
+      name: 'Baby Sign Language Dictionary',
+      tagline:
+          'Learn basic sign language to support early child communication.',
+      icon: LucideIcons.book_open,
+      helpsWith: [
+        'Teach everyday signs for needs like eat, more, and sleep.',
+        'Support early communication before spoken language is clear.',
+      ],
+      steps: [
+        'Open a baby sign language dictionary or learning app.',
+        'Start with a few high-use signs and practice them daily.',
+        'Use the signs consistently during meals, play, and bedtime.',
+      ],
+      contexts: ['At Home', 'Classrooms', 'With caregivers'],
+      imageAsset: 'assets/images/hearing_loop_guide.png',
+      androidStoreUrl:
+          'https://play.google.com/store/search?q=baby%20sign%20language&c=apps',
+      iosStoreUrl: 'https://apps.apple.com/us/search?term=baby%20sign%20language',
     ),
   };
 
